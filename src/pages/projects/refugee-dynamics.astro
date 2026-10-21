@@ -1,0 +1,858 @@
+
+---
+const tools = [
+  "Python",
+  "pandas",
+  "NumPy",
+  "scikit-learn",
+  "statsmodels",
+  "Matplotlib",
+  "Statistical Analysis"
+];
+
+const methods = [
+  {
+    number: "01",
+    title: "Data collection",
+    description: "Combined World Bank refugee population data with the Comparative Political Data Set (CPDS), containing government, economic and demographic indicators."
+  },
+  {
+    number: "02",
+    title: "Data preprocessing",
+    description: "Reshaped the refugee time series, merged country-year observations, selected relevant variables, addressed missing values and created refugee-to-population ratios."
+  },
+  {
+    number: "03",
+    title: "Exploratory data analysis",
+    description: "Examined historical refugee trends, country-level differences and relationships with political orientation and population size."
+  },
+  {
+    number: "04",
+    title: "Statistical modelling",
+    description: "Used dummy encoding, mean imputation and ordinary least squares regression to study associations between refugee population counts and political and socio-economic indicators."
+  },
+  {
+    number: "05",
+    title: "Model evaluation",
+    description: "Evaluated the model using an 80/20 train-test split, mean squared error, R-squared and five-fold cross-validation."
+  }
+];
+
+const sources = [
+  {
+    name: "World Bank — Refugee population",
+    url: "https://data.worldbank.org/indicator/SM.POP.REFG"
+  },
+  {
+    name: "Comparative Political Data Set (CPDS)",
+    url: "https://cpds-data.org/"
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Refugee Dynamics in Europe: investigating political, socio-economic and demographic factors using Python and statistical modelling."
+  />
+
+  <title>Refugee Dynamics in Europe | Lorenzo Bettin</title>
+</head>
+
+<body>
+  <header>
+    <nav class="container nav">
+      <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+
+      <div class="nav-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a
+          href="https://github.com/LorenzoBettin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero container">
+      <a href="/#projects" class="back">← All projects</a>
+
+      <div class="eyebrow">
+        DATA SCIENCE / PUBLIC POLICY
+      </div>
+
+      <h1>Refugee Dynamics <span>in Europe.</span></h1>
+
+      <p class="subtitle">
+        Investigating the relationship between government
+        orientation, socio-economic characteristics and
+        refugee populations across European countries
+        and selected international comparators.
+      </p>
+
+      <div class="tags">
+        {tools.map(tool => <span>{tool}</span>)}
+      </div>
+    </section>
+
+
+    <!-- PROJECT CONTENT -->
+
+    <section class="overview">
+      <div class="container">
+
+        <!-- KEY METRICS -->
+
+        <div class="metrics">
+          <div>
+            <strong>1,635</strong>
+            <span>Country-year observations</span>
+          </div>
+
+          <div>
+            <strong>36</strong>
+            <span>Countries in the analysis</span>
+          </div>
+
+          <div>
+            <strong>0.696</strong>
+            <span>Exploratory test R²</span>
+          </div>
+        </div>
+
+
+        <!-- 01 OVERVIEW -->
+
+        <div class="content-grid">
+          <div class="section-label">01 / OVERVIEW</div>
+
+          <div class="section-content">
+            <h2>The challenge</h2>
+
+            <p>
+              Refugee populations differ substantially across
+              European countries. These differences reflect
+              complex interactions between humanitarian crises,
+              geographical conditions, economic characteristics
+              and government policies.
+            </p>
+
+            <p>
+              This project investigates whether political
+              orientation and socio-economic indicators are
+              associated with differences in refugee populations.
+            </p>
+
+            <p>
+              The analysis combines historical refugee data
+              with political, economic and demographic indicators
+              to explore these relationships quantitatively.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- 02 RESEARCH -->
+
+        <div class="content-grid">
+          <div class="section-label">02 / RESEARCH</div>
+
+          <div class="section-content">
+            <h2>Research question</h2>
+
+            <blockquote>
+              How are political, socio-economic and
+              demographic factors associated with refugee
+              populations across European countries?
+            </blockquote>
+
+            <p>The analysis considers three questions:</p>
+
+            <div class="research-question">
+              <span>01</span>
+              <p>
+                How does the refugee-to-population ratio
+                vary across countries and over time?
+              </p>
+            </div>
+
+            <div class="research-question">
+              <span>02</span>
+              <p>
+                What relationship exists between government
+                orientation and refugee population counts?
+              </p>
+            </div>
+
+            <div class="research-question">
+              <span>03</span>
+              <p>
+                Which socio-economic indicators show
+                statistical associations with refugee populations?
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 03 DATA AND EXPLORATION -->
+
+        <div class="content-grid">
+          <div class="section-label">03 / DATA</div>
+
+          <div class="section-content">
+            <h2>Data exploration</h2>
+
+            <p>
+              The project combines World Bank refugee population
+              statistics with the CPDS, which provides historical
+              political and socio-economic indicators.
+            </p>
+
+            <p>
+              The merged dataset contains 1,635 country-year
+              observations across 36 countries, including
+              selected countries outside Europe.
+            </p>
+
+            <h3>Refugee-to-population ratios</h3>
+
+            <p>
+              Refugee-to-population ratios help compare host
+              countries of different sizes. The scatter plot
+              illustrates changes and variation in this ratio
+              across the observed country-year records.
+            </p>
+
+            <figure class="project-figure">
+              <a
+                href="/images/refugee-dynamics/refugee-ratio-over-time.png"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/refugee-dynamics/refugee-ratio-over-time.png"
+                  alt="Scatter plot of refugee-to-population ratios over time"
+                  loading="lazy"
+                />
+              </a>
+
+              <figcaption>
+                Refugee-to-population ratios across historical
+                country-year observations. Each point represents
+                a country in a particular year.
+              </figcaption>
+            </figure>
+
+            <h3>Population size and government orientation</h3>
+
+            <p>
+              The second visualization compares average refugee
+              counts against average national populations.
+              Countries are color-coded by an aggregated
+              government-orientation measure based on the
+              Schmidt Index used in the analysis.
+            </p>
+
+            <figure class="project-figure">
+              <a
+                href="/images/refugee-dynamics/country-comparison.png"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/refugee-dynamics/country-comparison.png"
+                  alt="Average refugee population versus national population with government orientation categories"
+                  loading="lazy"
+                />
+              </a>
+
+              <figcaption>
+                Cross-country comparison using logarithmic
+                axes. The colors represent government-orientation
+                categories derived from the project data.
+              </figcaption>
+            </figure>
+
+            <div class="note">
+              <strong>Reading the visualizations</strong>
+              <p>
+                These figures are descriptive. Neither
+                the country differences nor the colors
+                demonstrate that a particular political
+                orientation causes higher or lower
+                refugee populations.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- 04 METHODOLOGY -->
+
+        <div class="content-grid">
+          <div class="section-label">04 / METHODOLOGY</div>
+
+          <div class="section-content">
+            <h2>Analytical workflow</h2>
+
+            {methods.map(method => (
+              <div class="method">
+                <span>{method.number}</span>
+
+                <div>
+                  <h3>{method.title}</h3>
+                  <p>{method.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
+        <!-- 05 STATISTICAL MODELLING -->
+
+        <div class="content-grid">
+          <div class="section-label">05 / MODELLING</div>
+
+          <div class="section-content">
+            <h2>Regression analysis</h2>
+
+            <p>
+              An ordinary least squares (OLS) regression
+              was fitted to examine the statistical
+              relationships between refugee population
+              counts and selected explanatory variables.
+            </p>
+
+            <p>
+              Predictors included political and institutional
+              characteristics, labour-force measures,
+              unemployment, population, economic indicators
+              and other variables from the CPDS.
+            </p>
+
+            <p>
+              The notebook also calculated refugee-to-population
+              ratios for descriptive analysis. However,
+              the regression model itself used absolute
+              refugee population counts as its target.
+            </p>
+
+            <div class="model-results">
+              <div class="metric-card">
+                <strong>0.696</strong>
+                <span>Test R²</span>
+              </div>
+
+              <div class="metric-card">
+                <strong>-10.02</strong>
+                <span>Mean cross-validation R²</span>
+              </div>
+            </div>
+
+            <div class="note">
+              <strong>Model reliability</strong>
+
+              <p>
+                The test-set result suggests a reasonable
+                fit on that particular split, but the
+                strongly negative mean cross-validation
+                score indicates unstable performance
+                across folds.
+              </p>
+
+              <p>
+                The original model also shows signs of
+                multicollinearity. Its results should
+                be interpreted as exploratory statistical
+                associations rather than robust predictions.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- 06 FINDINGS -->
+
+        <div class="content-grid">
+          <div class="section-label">06 / FINDINGS</div>
+
+          <div class="section-content">
+            <h2>Results and interpretation</h2>
+
+            <div class="finding">
+              <span>01</span>
+              <div>
+                <h3>Differences between host countries</h3>
+                <p>
+                  Refugee-to-population ratios varied
+                  considerably across countries and years.
+                  Historical conflicts and regional
+                  displacement events coincide with
+                  several prominent observations.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>02</span>
+              <div>
+                <h3>Government orientation</h3>
+                <p>
+                  Government-orientation categories did not
+                  show strong statistical significance in
+                  the reported regression specification.
+                  This does not establish that government
+                  policies have no effect on refugee outcomes.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>03</span>
+              <div>
+                <h3>Socio-economic relationships</h3>
+                <p>
+                  Several variables, including labour-force
+                  size, unemployment and measures of economic
+                  openness, showed statistically significant
+                  associations in the fitted model.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>04</span>
+              <div>
+                <h3>Limits of predictive modelling</h3>
+                <p>
+                  Cross-validation results revealed poor
+                  predictive consistency, suggesting that
+                  important differences across countries
+                  and periods were not captured reliably
+                  by the linear model.
+                </p>
+              </div>
+            </div>
+
+            <div class="note">
+              <strong>Key takeaway</strong>
+              <p>
+                Refugee dynamics cannot be understood
+                through political orientation or economic
+                variables alone. The project illustrates
+                the value of combining data analysis with
+                careful interpretation of geopolitical,
+                demographic and institutional contexts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 07 DATA SOURCES -->
+
+        <div class="content-grid">
+          <div class="section-label">07 / SOURCES</div>
+
+          <div class="section-content">
+            <h2>Research resources</h2>
+
+            <p>
+              Public datasets used in the original
+              research and statistical analysis.
+            </p>
+
+            <div class="sources">
+              {sources.map(source => (
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {source.name}
+                  <span>↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER / EXPLORE -->
+
+    <section class="end container">
+      <div class="eyebrow">EXPLORE MORE</div>
+
+      <h2>Interested in other projects?</h2>
+
+      <a href="/#projects" class="button">
+        Explore all projects →
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© {new Date().getFullYear()} Lorenzo Bettin</span>
+      <a href="/">Back to homepage ↑</a>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+
+  :global(body) {
+    margin: 0;
+    font-family: Inter, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: white;
+    color: #18253b;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :global(a) { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 28px;
+  }
+
+  header { border-bottom: 1px solid #edf0f4; }
+
+  .nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -.6px;
+  }
+
+  .logo span, .hero h1 span { color: #3979e6; }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+  }
+
+  .nav-links a:hover,
+  .back:hover { color: #3979e6; }
+
+  .hero {
+    padding-top: 75px;
+    padding-bottom: 95px;
+  }
+
+  .back {
+    display: inline-block;
+    color: #78869a;
+    font-size: 14px;
+    margin-bottom: 85px;
+  }
+
+  .eyebrow {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.8px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 7.5vw, 90px);
+    letter-spacing: -4px;
+    line-height: 1.09;
+    max-width: 950px;
+    margin: 0;
+  }
+
+  .subtitle {
+    color: #64748b;
+    font-size: 22px;
+    max-width: 770px;
+    line-height: 1.65;
+    margin: 30px 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+
+  .tags span {
+    padding: 8px 12px;
+    background: #f0f4fa;
+    border-radius: 6px;
+    color: #526780;
+    font-size: 12px;
+  }
+
+  .overview {
+    background: #f7f9fc;
+    padding-bottom: 60px;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 45px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+
+  .metrics div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .metrics strong {
+    font-size: 29px;
+    letter-spacing: -1px;
+  }
+
+  .metrics span {
+    font-size: 13px;
+    color: #77859a;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+
+  .section-content { min-width: 0; }
+
+  .section-label {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+  }
+
+  h2 {
+    font-size: 36px;
+    letter-spacing: -1.3px;
+    margin: 0 0 30px;
+  }
+
+  h3 {
+    font-size: 19px;
+    margin: 30px 0 12px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.85;
+  }
+
+  blockquote {
+    margin: 25px 0;
+    padding: 15px 0 15px 25px;
+    border-left: 3px solid #3979e6;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+
+  .research-question,
+  .method,
+  .finding {
+    display: flex;
+    gap: 25px;
+    padding: 22px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+
+  .research-question > span,
+  .method > span,
+  .finding > span {
+    flex-shrink: 0;
+    color: #3979e6;
+    font-size: 13px;
+    padding-top: 5px;
+  }
+
+  .research-question p {
+    margin: 0;
+  }
+
+  .method h3,
+  .finding h3 {
+    margin: 0;
+  }
+
+  .method p,
+  .finding p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .project-figure { margin: 35px 0 45px; }
+
+  .project-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #e3e9f0;
+    border-radius: 10px;
+    background: white;
+    transition: box-shadow .2s ease;
+  }
+
+  .project-figure a:hover img {
+    box-shadow: 0 10px 30px rgba(24,37,59,.12);
+  }
+
+  .project-figure figcaption {
+    margin-top: 12px;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .model-results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px;
+    background: white;
+    border: 1px solid #e3e9f0;
+    border-radius: 10px;
+  }
+
+  .metric-card strong {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .metric-card span {
+    font-size: 13px;
+    color: #718096;
+  }
+
+  .note {
+    background: white;
+    border: 1px solid #e3e9f0;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+
+  .note p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .sources a {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e3e9f0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .sources a:hover { color: #3979e6; }
+
+  .end {
+    padding-top: 110px;
+    padding-bottom: 120px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 16px 25px;
+    background: #18253b;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .button:hover { background: #3979e6; }
+
+  footer { border-top: 1px solid #e3e9f0; }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    color: #8190a5;
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .content-grid {
+      grid-template-columns: 170px minmax(0,1fr);
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .nav-links { gap: 13px; font-size: 12px; }
+    .hero { padding-top: 45px; padding-bottom: 65px; }
+    .hero h1 { letter-spacing: -2px; }
+    .back { margin-bottom: 55px; }
+    .subtitle { font-size: 18px; }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 55px 0;
+    }
+
+    .metrics { gap: 10px; }
+    .metrics strong { font-size: 22px; }
+    .metrics span { font-size: 11px; }
+
+    .model-results { grid-template-columns: 1fr; }
+    h2 { font-size: 29px; }
+    .footer-content { flex-direction: column; }
+  }
+</style>
