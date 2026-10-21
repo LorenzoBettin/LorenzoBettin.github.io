@@ -1,0 +1,297 @@
+---
+const repositoryUrl = "https://github.com/LorenzoBettin/digital-crush-test";
+const demoUrl = "https://m.youtube.com/watch?v=bFXhXrWeedg";
+
+const tools = ["Python", "Flask", "HTML", "Tailwind CSS", "Jinja2", "Rule-based Logic", "GovTech"];
+
+const checks = [
+  {
+    index: "01",
+    title: "Protective barriers",
+    dutch: "Afscheidingen",
+    status: "Questionnaire implemented",
+    description: "Questions about exposed edges, fixed barriers, barrier height, openings and clearances.",
+    image: "/images/digital-crush-test/rand_afscheiding.png",
+    alt: "Original illustration of a raised floor edge with a protective railing"
+  },
+  {
+    index: "02",
+    title: "Stair safety",
+    dutch: "Trappen",
+    status: "Questionnaire partially implemented",
+    description: "Checks covering changes in floor height, stair geometry, handrails and landings. Some branches need correction.",
+    image: "/images/digital-crush-test/trap_klimlijn.png",
+    alt: "Original illustration of stair inclination and vertical and horizontal measurements"
+  },
+  {
+    index: "03",
+    title: "Escape routes",
+    dutch: "Vluchtroutes",
+    status: "Questionnaire implemented",
+    description: "A short sequence about the existence, length, clearance and smoke-management conditions of an escape route.",
+    image: null,
+    alt: ""
+  }
+];
+
+const workflow = [
+  { number: "01", name: "Select a category", detail: "Choose the part of a proposed building design to examine." },
+  { number: "02", name: "Answer guided questions", detail: "A yes/no form presents one regulatory condition at a time." },
+  { number: "03", name: "Follow conditional branches", detail: "Python if/elif logic determines the next question or a preliminary outcome." },
+  { number: "04", name: "Review the result", detail: "The prototype shows red or green feedback describing a potential rule conflict." }
+];
+
+const originalFiles = [
+  { name: "interface.py", role: "Flask routes and questionnaire decision logic" },
+  { name: "Templates/Home.html", role: "Topic-selection screen" },
+  { name: "Templates/afscheiding.html", role: "Barrier-check introduction" },
+  { name: "Templates/trappen.html", role: "Stair-check introduction" },
+  { name: "Templates/vluchtroute.html", role: "Escape-route introduction" },
+  { name: "Templates/question.html", role: "Shared yes/no form and results UI" },
+  { name: "Templates/questions.html", role: "Additional question-form template" },
+  { name: "Static/*.png", role: "Six contextual technical illustrations" }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Digital Crush Test: a Python/Flask prototype for preliminary rule-based screening of Dutch building-safety requirements." />
+    <title>Digital Crush Test | Lorenzo Bettin</title>
+  </head>
+  <body>
+    <header>
+      <nav class="container nav">
+        <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="https://github.com/LorenzoBettin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <a class="back" href="/#projects">← All projects</a>
+        <div class="eyebrow">GOVTECH / SOFTWARE DEVELOPMENT / PUBLIC POLICY</div>
+        <h1>Digital <span>Crush Test.</span></h1>
+        <p class="subtitle">A rule-based web application that helps citizens explore potential building-safety issues through step-by-step questions.</p>
+        <div class="tags">{tools.map(tool => <span>{tool}</span>)}</div>
+        <div class="hero-actions">
+          {repositoryUrl && (
+            <a class="primary-link" href={repositoryUrl} target="_blank" rel="noopener noreferrer">View Source Code on GitHub ↗</a>
+          )}
+          <a class="video-link" href={demoUrl} target="_blank" rel="noopener noreferrer">Project video ↗</a>
+        </div>
+        <p class="hero-note">Academic / prototype work · Not an official permitting or regulatory determination</p>
+      </section>
+
+      <section class="overview">
+        <div class="container">
+          <div class="metrics">
+            <div><strong>3</strong><span>Implemented questionnaire categories</span></div>
+            <div><strong>Python + Flask</strong><span>Backend and conditional logic</span></div>
+            <div><strong>6</strong><span>Original explanatory illustrations</span></div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">01 / OVERVIEW</div>
+            <div class="section-content">
+              <h2>Making construction rules easier to navigate</h2>
+              <p>Building projects can involve multiple safety requirements that are difficult for non-specialists to interpret. The Digital Crush Test explores how a simple web interface can guide citizens through selected checks before they seek an official assessment.</p>
+              <p>The original project description frames the tool around a municipality-focused use case in The Hague, Netherlands. The software uses explicit if/then decision trees instead of machine learning or automated drawing analysis.</p>
+              <div class="note"><strong>Scope</strong><p>The application screens answers provided by users. It does not inspect architectural drawings, issue building permits, or determine legal compliance. The original rules have not been independently validated as current.</p></div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">02 / PROBLEM</div>
+            <div class="section-content">
+              <h2>From complex rules to guided decisions</h2>
+              <blockquote>Can straightforward decision logic help citizens recognize possible building-safety concerns earlier in the design process?</blockquote>
+              <p>The prototype takes a selected topic, asks a succession of yes/no questions, and routes each answer to the next step or a color-coded preliminary message.</p>
+              <div class="steps">
+                {workflow.map(step => (
+                  <div class="step">
+                    <span>{step.number}</span>
+                    <div><h3>{step.name}</h3><p>{step.detail}</p></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">03 / APPLICATION</div>
+            <div class="section-content">
+              <h2>Questionnaire modules</h2>
+              <p>Three question flows are implemented in the original Flask backend. The home screen also lists ramps and fire risk, but their destination templates are missing from the exported project.</p>
+              {checks.map(check => (
+                <article class="module">
+                  <div class="module-top"><span class="module-number">{check.index}</span><span class="module-status">{check.status}</span></div>
+                  <h3>{check.title}</h3>
+                  <div class="dutch-label">{check.dutch}</div>
+                  <p>{check.description}</p>
+                  {check.image && (
+                    <figure class="figure">
+                      <a href={check.image} target="_blank" rel="noopener noreferrer"><img src={check.image} alt={check.alt} loading="lazy" /></a>
+                      <figcaption>Technical illustration from the original prototype.</figcaption>
+                    </figure>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">04 / DECISION LOGIC</div>
+            <div class="section-content">
+              <h2>How the rules are encoded</h2>
+              <p>The Python backend organizes each topic as a sequence of named questions. Flask handles form submissions, evaluates the answer and redirects to another question or renders a result.</p>
+              <div class="flow-diagram">
+                <div class="flow-node">Selected category</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node accent-node">Yes / No question</div>
+                <div class="branch-row"><div>YES → next check / outcome</div><div>NO → different check / outcome</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="result-row"><div class="result-green">Green: no conflict flagged by this path</div><div class="result-red">Red: potential conflict flagged</div></div>
+              </div>
+              <p class="diagram-caption">Simplified representation of the original decision-tree mechanism. Outcomes depend on the particular question and are not regulatory certifications.</p>
+              <h3>Contextual diagrams</h3>
+              <p>The original UI displays illustrations for selected questions, helping users understand conditions such as floor-edge protection and stair dimensions.</p>
+              <div class="image-grid">
+                <figure class="figure">
+                  <a href="/images/digital-crush-test/afscheiding_bol.png" target="_blank" rel="noopener noreferrer"><img src="/images/digital-crush-test/afscheiding_bol.png" alt="Original illustration of a sphere used to illustrate an opening in a barrier" loading="lazy" /></a>
+                  <figcaption>Barrier openings (original illustration)</figcaption>
+                </figure>
+                <figure class="figure">
+                  <a href="/images/digital-crush-test/trap_afmetingen.png" target="_blank" rel="noopener noreferrer"><img src="/images/digital-crush-test/trap_afmetingen.png" alt="Original Dutch-language stair dimension table" loading="lazy" /></a>
+                  <figcaption>Stair measurements (original reference table)</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">05 / TECHNICAL DESIGN</div>
+            <div class="section-content">
+              <h2>Technology and structure</h2>
+              <p>The application uses a small Python Flask server, Jinja HTML templates, Tailwind styling through a CDN and static images. Most of the application logic lives in a single file, <code>interface.py</code>.</p>
+              <div class="file-list">
+                {originalFiles.map(file => (
+                  <div class="file-row"><code>{file.name}</code><span>{file.role}</span></div>
+                ))}
+              </div>
+              <p class="small-text">The source export uses <code>Templates/</code> and <code>Static/</code> with capital letters; Flask's default folder names are <code>templates/</code> and <code>static/</code>. They should be normalized when preparing the application for local execution.</p>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">06 / REFLECTION</div>
+            <div class="section-content">
+              <h2>Strengths and development limitations</h2>
+              <div class="finding"><span>01</span><div><h3>Explainable rule-based reasoning</h3><p>Each branch is an explicit condition, making the decision path inspectable and extendable.</p></div></div>
+              <div class="finding"><span>02</span><div><h3>Accessible interaction design</h3><p>Short forms, topic selection and visual references reduce the amount of regulatory text shown at once.</p></div></div>
+              <div class="finding"><span>03</span><div><h3>Incomplete flows</h3><p>Some stair-related branches are unreachable or duplicate the same redirect. Ramp and fire-risk pages are linked but not included in the source export.</p></div></div>
+              <div class="finding"><span>04</span><div><h3>Legal and technical validation needed</h3><p>Thresholds, exceptions and decision paths would need review by qualified practitioners, and the prototype would need additional testing before real-world use.</p></div></div>
+              <div class="note"><strong>Project takeaway</strong><p>Digital Crush Test demonstrates translating policy requirements into structured decision logic and an accessible web interface. It is a concept prototype, not a deployed municipal compliance service.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="end container">
+        <div class="eyebrow">EXPLORE MORE</div>
+        <h2>Explore my other projects.</h2>
+        <a class="all-projects" href="/#projects">View all projects →</a>
+      </section>
+    </main>
+
+    <footer><div class="container footer-content"><span>© {new Date().getFullYear()} Lorenzo Bettin</span><a href="/">Back to homepage ↑</a></div></footer>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) { margin: 0; background: white; color: #18253b; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  :global(a) { color: inherit; text-decoration: none; }
+  .container { max-width: 1100px; margin: auto; padding: 0 28px; }
+  header { border-bottom: 1px solid #edf0f4; }
+  .nav { height: 80px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-size: 19px; font-weight: 800; letter-spacing: -.6px; }
+  .logo span, .hero h1 span { color: #3979e6; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; }
+  .nav-links a:hover, .back:hover { color: #3979e6; }
+  .hero { padding-top: 75px; padding-bottom: 95px; }
+  .back { display: inline-block; margin-bottom: 80px; color: #78869a; font-size: 14px; }
+  .eyebrow { margin-bottom: 20px; color: #3979e6; font-size: 12px; font-weight: 750; letter-spacing: 1.8px; }
+  .hero h1 { margin: 0; max-width: 950px; font-size: clamp(52px, 8vw, 94px); letter-spacing: -4px; line-height: 1.1; }
+  .subtitle { max-width: 780px; margin: 30px 0; color: #64748b; font-size: 22px; line-height: 1.65; }
+  .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tags span { padding: 8px 12px; background: #f0f4fa; border-radius: 6px; color: #526780; font-size: 12px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .primary-link, .video-link, .all-projects { display: inline-block; padding: 14px 23px; border-radius: 8px; font-size: 14px; font-weight: 650; }
+  .primary-link, .all-projects { background: #18253b; color: white; }
+  .primary-link:hover, .all-projects:hover { background: #3979e6; }
+  .video-link { background: #f0f4fa; color: #18253b; }
+  .video-link:hover { background: #e4ebf5; }
+  .hero-note { margin-top: 20px; color: #78869a; font-size: 12px; }
+  .overview { padding-bottom: 60px; background: #f7f9fc; }
+  .metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; padding: 45px 0; border-bottom: 1px solid #dee5ee; }
+  .metrics div { display: flex; flex-direction: column; gap: 9px; }
+  .metrics strong { font-size: 25px; letter-spacing: -.6px; }
+  .metrics span { color: #77859a; font-size: 13px; }
+  .content-grid { display: grid; grid-template-columns: 230px minmax(0,1fr); gap: 50px; padding: 78px 0; border-bottom: 1px solid #dee5ee; }
+  .section-content { min-width: 0; }
+  .section-label { color: #3979e6; font-size: 12px; font-weight: 750; letter-spacing: 1.5px; }
+  h2 { margin: 0 0 30px; font-size: 36px; letter-spacing: -1.3px; }
+  h3 { margin: 24px 0 10px; font-size: 19px; }
+  p { color: #64748b; font-size: 16px; line-height: 1.85; }
+  blockquote { margin: 25px 0; padding: 15px 0 15px 25px; border-left: 3px solid #3979e6; font-size: 22px; font-weight: 600; line-height: 1.55; }
+  .note { margin-top: 30px; padding: 25px; border: 1px solid #e3e9f0; border-radius: 10px; background: white; }
+  .note p { margin-bottom: 0; font-size: 14px; }
+  .step, .finding { display: flex; gap: 24px; padding: 22px 0; border-bottom: 1px solid #e3e9f0; }
+  .step > span, .finding > span { flex-shrink: 0; padding-top: 5px; color: #3979e6; font-size: 13px; }
+  .step h3, .finding h3 { margin: 0; }
+  .step p, .finding p { margin-bottom: 0; font-size: 14px; }
+  .module { margin-top: 24px; padding: 25px; border: 1px solid #e3e9f0; border-radius: 12px; background: white; }
+  .module-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .module-number { color: #3979e6; font-size: 13px; font-weight: 750; }
+  .module-status { color: #75849a; font-size: 12px; text-align: right; }
+  .module h3 { margin: 15px 0 4px; font-size: 22px; }
+  .dutch-label { color: #3979e6; font-size: 13px; }
+  .module p { margin-bottom: 0; font-size: 14px; }
+  .figure { margin: 23px 0 0; }
+  .figure img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; padding: 8px; border: 1px solid #e3e9f0; border-radius: 9px; background: white; }
+  .figure figcaption, .diagram-caption { margin-top: 10px; color: #77859a; font-size: 12px; line-height: 1.6; }
+  .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .image-grid .figure img { height: 280px; }
+  .flow-diagram { max-width: 630px; margin: 32px auto 10px; text-align: center; }
+  .flow-node { padding: 19px; border: 1px solid #cbd6e5; border-radius: 9px; background: white; font-size: 15px; font-weight: 700; }
+  .accent-node { background: #eaf1fc; border-color: #b7caec; }
+  .flow-arrow { padding: 10px; color: #3979e6; font-size: 20px; }
+  .branch-row, .result-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .branch-row div, .result-row div { padding: 16px 12px; border-radius: 8px; background: white; border: 1px solid #e3e9f0; font-size: 13px; line-height: 1.5; }
+  .result-row .result-green { background: #f2faf5; border-color: #cfe7d7; }
+  .result-row .result-red { background: #fdf5f5; border-color: #edd5d5; }
+  .file-list { margin-top: 30px; }
+  .file-row { display: flex; justify-content: space-between; gap: 18px; padding: 16px 0; border-bottom: 1px solid #e3e9f0; }
+  .file-row code { color: #18253b; font-size: 13px; overflow-wrap: anywhere; }
+  .file-row span { max-width: 285px; color: #64748b; font-size: 13px; text-align: right; }
+  .small-text { font-size: 13px; }
+  .end { padding-top: 105px; padding-bottom: 115px; }
+  footer { border-top: 1px solid #e3e9f0; }
+  .footer-content { display: flex; justify-content: space-between; gap: 16px; padding-top: 32px; padding-bottom: 32px; color: #8190a5; font-size: 12px; }
+  @media(max-width:900px) { .content-grid { grid-template-columns: 170px minmax(0,1fr); gap: 30px; } }
+  @media(max-width:700px) {
+    .container { padding: 0 20px; } .nav { height: 70px; } .nav-links { gap: 13px; font-size: 12px; }
+    .hero { padding-top: 45px; padding-bottom: 65px; } .hero h1 { letter-spacing: -2px; } .back { margin-bottom: 55px; } .subtitle { font-size: 18px; }
+    .content-grid { grid-template-columns: 1fr; gap: 20px; padding: 55px 0; } .metrics { grid-template-columns: 1fr; gap: 18px; } .metrics strong { font-size: 22px; }
+    h2 { font-size: 29px; } .image-grid { grid-template-columns: 1fr; } .file-row { flex-direction: column; gap: 6px; } .file-row span { max-width: none; text-align: left; }
+    .footer-content { flex-direction: column; }
+  }
+</style>
