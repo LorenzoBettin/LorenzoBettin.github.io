@@ -44,6 +44,17 @@ const sources = [
       <div class="tags">
         {tools.map(tool => <span>{tool}</span>)}
       </div>
+
+
+<a
+  href="https://github.com/LorenzoBettin/solar-equity"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="source-link"
+>
+  View Source Code on GitHub ↗
+</a>
+
     </section>
 
     <section class="overview">
@@ -360,6 +371,24 @@ const sources = [
   color: #718096;
   font-size: 13px;
   line-height: 1.6;
+}
+
+
+
+.source-link {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 24px;
+  background: #18253b;
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.source-link:hover {
+  background: #3979e6;
 }
 
 </style>
