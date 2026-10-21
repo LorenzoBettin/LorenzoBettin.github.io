@@ -104,6 +104,16 @@ const sources = [
       <div class="tags">
         {tools.map(tool => <span>{tool}</span>)}
       </div>
+
+        <a
+        href="https://github.com/LorenzoBettin/refugee-dynamics-europe"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="source-link"
+        >
+        View Source Code on GitHub ↗
+        </a>
+
     </section>
 
 
@@ -855,4 +865,22 @@ const sources = [
     h2 { font-size: 29px; }
     .footer-content { flex-direction: column; }
   }
+
+
+.source-link {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 24px;
+  background: #18253b;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.source-link:hover {
+  background: #3979e6;
+}
+
 </style>
