@@ -1,0 +1,1059 @@
+
+---
+const tools = [
+  "Python",
+  "pandas",
+  "GeoPandas",
+  "Matplotlib",
+  "Seaborn",
+  "scikit-learn",
+  "Spatial Data Science"
+];
+
+const methods = [
+  {
+    number: "01",
+    title: "Data collection",
+    description:
+      "Collected vegetation measurements, political candidate affidavit records, state boundaries and census literacy data."
+  },
+  {
+    number: "02",
+    title: "Data preparation",
+    description:
+      "Cleaned variables, filtered the study period, calculated vegetation changes and aggregated political candidate characteristics."
+  },
+  {
+    number: "03",
+    title: "Spatial data integration",
+    description:
+      "Integrated environmental and political records with state boundaries using GeoPandas, and added literacy indicators."
+  },
+  {
+    number: "04",
+    title: "Exploratory analysis",
+    description:
+      "Examined correlations, vegetation trends, geographical distributions and relationships with criminal-charge records and literacy."
+  },
+  {
+    number: "05",
+    title: "Regression modelling",
+    description:
+      "Developed a multiple linear regression model to explore relationships between vegetation change and selected explanatory variables."
+  }
+];
+
+const figures = [
+  {
+    title: "Criminal cases and vegetation change",
+    src: "/images/india-environment/criminal-cases-vs-vegetation-change.png",
+    alt: "Scatter plot comparing political candidate criminal cases and vegetation change",
+    caption:
+      "The observations show substantial variation, without a clear linear relationship between recorded criminal cases and the vegetation-change proxy."
+  },
+  {
+    title: "Literacy and vegetation change",
+    src: "/images/india-environment/literacy-vs-vegetation-change.png",
+    alt: "Scatter plot showing literacy rate versus vegetation change",
+    caption:
+      "Exploratory comparison of literacy rates and vegetation change, with observations distinguished by state."
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="An exploratory spatial data science study of political candidate records, literacy and vegetation change across Indian states."
+  />
+
+  <title>India: Corruption & Environment | Lorenzo Bettin</title>
+</head>
+
+<body>
+  <header>
+    <nav class="container nav">
+      <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+
+      <div class="nav-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a
+          href="https://github.com/LorenzoBettin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero container">
+      <a href="/#projects" class="back">← All projects</a>
+
+      <div class="eyebrow">
+        SPATIAL DATA SCIENCE / ENVIRONMENTAL POLICY
+      </div>
+
+      <h1>
+        India: Corruption, Education
+        & <span>Environmental Degradation.</span>
+      </h1>
+
+      <p class="subtitle">
+        Exploring how political candidate characteristics
+        and literacy rates relate to vegetation change
+        across Indian states.
+      </p>
+
+      <div class="tags">
+        {tools.map(tool => <span>{tool}</span>)}
+      </div>
+    </section>
+
+
+    <!-- MAIN PROJECT CONTENT -->
+
+    <section class="overview">
+      <div class="container">
+
+        <!-- METRICS -->
+
+        <div class="metrics">
+          <div>
+            <strong>2003–2017</strong>
+            <span>Study data period</span>
+          </div>
+
+          <div>
+            <strong>0.082</strong>
+            <span>Regression test R²</span>
+          </div>
+
+          <div>
+            <strong>61.70</strong>
+            <span>Mean squared error</span>
+          </div>
+        </div>
+
+
+        <!-- 01 OVERVIEW -->
+
+        <div class="content-grid">
+          <div class="section-label">01 / OVERVIEW</div>
+
+          <div class="section-content">
+            <h2>The challenge</h2>
+
+            <p>
+              Environmental degradation is influenced by
+              complex interactions between governance,
+              economic development, land use and social
+              conditions.
+            </p>
+
+            <p>
+              This project explores whether political
+              candidate criminal-charge records and
+              education-related indicators are associated
+              with changes in vegetation across India.
+            </p>
+
+            <p>
+              The research combines political, demographic
+              and environmental datasets with geographical
+              boundaries to support spatial exploration
+              and statistical analysis.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- 02 RESEARCH QUESTION -->
+
+        <div class="content-grid">
+          <div class="section-label">02 / RESEARCH</div>
+
+          <div class="section-content">
+            <h2>Research hypothesis</h2>
+
+            <blockquote>
+              Higher levels of political corruption,
+              approximated using criminal charges against
+              candidates, may be associated with greater
+              forest degradation. Higher education levels
+              may moderate this relationship.
+            </blockquote>
+
+            <p>
+              The hypothesis was explored using recorded
+              criminal cases involving political candidates,
+              state-level literacy rates and a proxy
+              derived from vegetation measurements.
+            </p>
+
+            <div class="note">
+              <strong>Measurement considerations</strong>
+              <p>
+                Criminal charges are not equivalent to
+                convictions or proven corruption. Literacy
+                is a limited proxy for education.
+                Vegetation change also cannot directly
+                establish deforestation without additional
+                land-cover validation.
+              </p>
+              <p>
+                The regression did not include a formal
+                corruption-by-education interaction term,
+                so the proposed moderating relationship
+                was not directly tested.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 03 DATA -->
+
+        <div class="content-grid">
+          <div class="section-label">03 / DATA</div>
+
+          <div class="section-content">
+            <h2>Data integration and spatial analysis</h2>
+
+            <p>
+              The analysis integrates candidate affidavit
+              data, vegetation measurements, geographical
+              boundaries and literacy information from
+              census records.
+            </p>
+
+            <div class="data-row">
+              <span>01</span>
+              <div>
+                <h3>Political candidate records</h3>
+                <p>
+                  Criminal-charge information from candidate
+                  affidavits, aggregated by state and year.
+                </p>
+              </div>
+            </div>
+
+            <div class="data-row">
+              <span>02</span>
+              <div>
+                <h3>Environmental indicators</h3>
+                <p>
+                  Vegetation measurements used to construct
+                  an exploratory vegetation-change proxy.
+                </p>
+              </div>
+            </div>
+
+            <div class="data-row">
+              <span>03</span>
+              <div>
+                <h3>Literacy and demographics</h3>
+                <p>
+                  Census-derived literacy rates used as
+                  an education-related explanatory variable.
+                </p>
+              </div>
+            </div>
+
+            <div class="data-row">
+              <span>04</span>
+              <div>
+                <h3>Geographical boundaries</h3>
+                <p>
+                  Indian state geometries used for joining
+                  datasets and producing exploratory maps.
+                </p>
+              </div>
+            </div>
+
+
+            <h3 class="subheading">Geographical variation in literacy</h3>
+
+            <p>
+              State-level literacy rates are displayed
+              geographically to illustrate differences
+              across the study area.
+            </p>
+
+            <figure class="project-figure">
+              <a
+                href="/images/india-environment/literacy-by-state.png"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/india-environment/literacy-by-state.png"
+                  alt="Choropleth showing literacy rates across Indian states"
+                  loading="lazy"
+                />
+              </a>
+
+              <figcaption>
+                Literacy rates across Indian states,
+                visualized using the original GeoPandas
+                analysis. The map is exploratory.
+              </figcaption>
+            </figure>
+
+          </div>
+        </div>
+
+
+        <!-- 04 METHODOLOGY -->
+
+        <div class="content-grid">
+          <div class="section-label">04 / METHODOLOGY</div>
+
+          <div class="section-content">
+            <h2>Analytical workflow</h2>
+
+            <p>
+              The study follows a data-driven workflow,
+              combining tabular preprocessing, spatial
+              data integration, descriptive analysis
+              and statistical modelling.
+            </p>
+
+            {methods.map(method => (
+              <div class="method">
+                <span>{method.number}</span>
+                <div>
+                  <h3>{method.title}</h3>
+                  <p>{method.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
+        <!-- 05 EXPLORATORY RESULTS -->
+
+        <div class="content-grid">
+          <div class="section-label">05 / EXPLORATION</div>
+
+          <div class="section-content">
+            <h2>Exploring the relationships</h2>
+
+            <p>
+              Scatter plots were used to examine
+              whether vegetation change displays
+              clear relationships with candidate
+              criminal-charge records and literacy.
+            </p>
+
+            {figures.map(figure => (
+              <div class="result-block">
+                <h3>{figure.title}</h3>
+
+                <figure class="project-figure">
+                  <a
+                    href={figure.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={figure.src}
+                      alt={figure.alt}
+                      loading="lazy"
+                    />
+                  </a>
+
+                  <figcaption>{figure.caption}</figcaption>
+                </figure>
+              </div>
+            ))}
+
+            <div class="note">
+              <strong>Exploratory result</strong>
+              <p>
+                The notebook reports a correlation very
+                close to zero between its five-observation
+                rolling criminal-case average and the
+                vegetation-change proxy.
+              </p>
+              <p>
+                This result does not support a strong
+                linear association in the analysed data,
+                but does not rule out other governance
+                or environmental relationships.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- 06 REGRESSION -->
+
+        <div class="content-grid">
+          <div class="section-label">06 / MODELLING</div>
+
+          <div class="section-content">
+            <h2>Regression analysis</h2>
+
+            <p>
+              A multiple linear regression model was
+              developed using the vegetation-change
+              proxy as the response variable.
+            </p>
+
+            <p>
+              The model included the five-observation
+              rolling sum of candidate criminal cases,
+              mean vegetation and state literacy rate
+              as explanatory variables.
+            </p>
+
+            <div class="model-results">
+              <div class="metric-card">
+                <strong>0.082</strong>
+                <span>Test R²</span>
+              </div>
+
+              <div class="metric-card">
+                <strong>61.70</strong>
+                <span>Test mean squared error</span>
+              </div>
+            </div>
+
+            <p>
+              The reported R² indicates that the
+              fitted model explained approximately
+              8.2% of the variation in the held-out
+              test observations.
+            </p>
+
+            <p>
+              The fitted coefficient for the criminal-case
+              measure was close to zero. The coefficient
+              for literacy was negative, although that
+              alone does not establish a causal or
+              statistically robust education effect.
+            </p>
+
+            <h3 class="subheading">Model diagnostics</h3>
+
+            <figure class="project-figure">
+              <a
+                href="/images/india-environment/regression-residuals.png"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/india-environment/regression-residuals.png"
+                  alt="Residuals plotted against predicted vegetation change"
+                  loading="lazy"
+                />
+              </a>
+
+              <figcaption>
+                Residuals versus predicted vegetation
+                change. The changing spread of errors
+                suggests possible heteroscedasticity.
+              </figcaption>
+            </figure>
+
+            <div class="note">
+              <strong>Model limitations</strong>
+              <p>
+                The model has limited explanatory power.
+                The target is derived from vegetation
+                measurements, while mean vegetation is
+                also used as a predictor.
+              </p>
+              <p>
+                The original vegetation-change calculation
+                uses a shift of five observations within
+                each state, not necessarily a five-calendar-year
+                interval. These construction choices,
+                along with repeated geographical records,
+                warrant further validation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 07 CONCLUSIONS -->
+
+        <div class="content-grid">
+          <div class="section-label">07 / FINDINGS</div>
+
+          <div class="section-content">
+            <h2>Findings and implications</h2>
+
+            <div class="finding">
+              <span>01</span>
+              <div>
+                <h3>Weak observed crime–vegetation relationship</h3>
+                <p>
+                  The analysis found little evidence
+                  of a strong linear relationship between
+                  recorded candidate criminal cases and
+                  the vegetation-change proxy.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>02</span>
+              <div>
+                <h3>Literacy and environmental variation</h3>
+                <p>
+                  Literacy showed a negative fitted
+                  coefficient in the regression.
+                  Its interpretation is limited by
+                  model performance and the definition
+                  of the vegetation-change measure.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>03</span>
+              <div>
+                <h3>Importance of geographical scale</h3>
+                <p>
+                  Combining datasets across different
+                  spatial and temporal resolutions
+                  revealed challenges in aggregation
+                  and environmental measurement.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>04</span>
+              <div>
+                <h3>Opportunities for further research</h3>
+                <p>
+                  More direct forest-loss measurements,
+                  stronger governance indicators,
+                  additional economic variables and
+                  spatially aware validation could
+                  improve future research.
+                </p>
+              </div>
+            </div>
+
+            <div class="note">
+              <strong>Research takeaway</strong>
+              <p>
+                This study demonstrates how spatial
+                and statistical methods can be used to
+                examine environmental policy questions.
+                Its main contribution is an exploratory
+                analytical workflow, not a demonstrated
+                causal relationship between corruption,
+                education and forest degradation.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- 08 DATA SOURCES -->
+
+        <div class="content-grid">
+          <div class="section-label">08 / RESOURCES</div>
+
+          <div class="section-content">
+            <h2>Research data</h2>
+
+            <p>
+              The original analysis references
+              these input datasets:
+            </p>
+
+            <div class="source-row">
+              Candidate affidavit records (2003–2017)
+            </div>
+            <div class="source-row">
+              Subdistrict vegetation-cover measurements
+            </div>
+            <div class="source-row">
+              Census population and literacy data
+            </div>
+            <div class="source-row">
+              Indian state-boundary shapefile
+            </div>
+
+            <p class="small-text">
+              Dataset links and technical implementation
+              details are available in the original
+              research materials. Input data should be
+              checked for availability and redistribution
+              permissions before republication.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- EXPLORE -->
+
+    <section class="end container">
+      <div class="eyebrow">EXPLORE MORE</div>
+
+      <h2>Interested in other projects?</h2>
+
+      <a href="/#projects" class="button">
+        Explore all projects →
+      </a>
+    </section>
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="container footer-content">
+      <span>© {new Date().getFullYear()} Lorenzo Bettin</span>
+      <a href="/">Back to homepage ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  :global(body) {
+    margin: 0;
+    background: #ffffff;
+    color: #18253b;
+    font-family: Inter, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :global(a) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 28px;
+  }
+
+  /* Navigation */
+
+  header {
+    border-bottom: 1px solid #edf0f4;
+  }
+
+  .nav {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+  }
+
+  .logo span,
+  .hero h1 span {
+    color: #3979e6;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+  }
+
+  .nav-links a:hover {
+    color: #3979e6;
+  }
+
+  /* Hero */
+
+  .hero {
+    padding-top: 75px;
+    padding-bottom: 95px;
+  }
+
+  .back {
+    display: inline-block;
+    color: #78869a;
+    font-size: 14px;
+    margin-bottom: 80px;
+  }
+
+  .back:hover {
+    color: #3979e6;
+  }
+
+  .eyebrow {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.8px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(45px, 7vw, 85px);
+    max-width: 970px;
+    line-height: 1.1;
+    letter-spacing: -3.5px;
+    margin: 0;
+  }
+
+  .subtitle {
+    max-width: 760px;
+    margin: 30px 0;
+    color: #64748b;
+    font-size: 22px;
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+
+  .tags span {
+    padding: 8px 12px;
+    background: #f0f4fa;
+    border-radius: 6px;
+    color: #526780;
+    font-size: 12px;
+  }
+
+  /* Content */
+
+  .overview {
+    background: #f7f9fc;
+    padding-bottom: 60px;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    padding: 45px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+
+  .metrics div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .metrics strong {
+    font-size: 28px;
+    letter-spacing: -1px;
+  }
+
+  .metrics span {
+    font-size: 13px;
+    color: #77859a;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+
+  .section-content {
+    min-width: 0;
+  }
+
+  .section-label {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+  }
+
+  h2 {
+    font-size: 36px;
+    letter-spacing: -1.3px;
+    margin: 0 0 30px;
+  }
+
+  h3 {
+    font-size: 19px;
+    margin: 25px 0 10px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.85;
+  }
+
+  blockquote {
+    margin: 25px 0;
+    padding: 15px 0 15px 25px;
+    border-left: 3px solid #3979e6;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+
+  /* Methodology and findings */
+
+  .data-row,
+  .method,
+  .finding {
+    display: flex;
+    gap: 25px;
+    padding: 22px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+
+  .data-row > span,
+  .method > span,
+  .finding > span {
+    flex-shrink: 0;
+    color: #3979e6;
+    font-size: 13px;
+    padding-top: 5px;
+  }
+
+  .data-row h3,
+  .method h3,
+  .finding h3 {
+    margin: 0;
+  }
+
+  .data-row p,
+  .method p,
+  .finding p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .subheading {
+    margin-top: 55px;
+  }
+
+  /* Images */
+
+  .result-block {
+    margin-top: 40px;
+  }
+
+  .project-figure {
+    margin: 28px 0 40px;
+  }
+
+  .project-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: white;
+    border: 1px solid #e3e9f0;
+    border-radius: 10px;
+    transition: box-shadow 0.2s;
+  }
+
+  .project-figure a:hover img {
+    box-shadow: 0 10px 30px rgba(24,37,59,.12);
+  }
+
+  .project-figure figcaption {
+    margin-top: 12px;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  /* Model results */
+
+  .model-results {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px;
+    background: white;
+    border: 1px solid #e3e9f0;
+    border-radius: 10px;
+  }
+
+  .metric-card strong {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .metric-card span {
+    font-size: 13px;
+    color: #718096;
+  }
+
+  .note {
+    background: white;
+    border: 1px solid #e3e9f0;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+
+  .note p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .source-row {
+    padding: 18px 0;
+    border-bottom: 1px solid #e3e9f0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .small-text {
+    margin-top: 25px;
+    font-size: 13px;
+  }
+
+  /* Footer */
+
+  .end {
+    padding-top: 110px;
+    padding-bottom: 120px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 16px 25px;
+    background: #18253b;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .button:hover {
+    background: #3979e6;
+  }
+
+  footer {
+    border-top: 1px solid #e3e9f0;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    color: #8190a5;
+    font-size: 12px;
+  }
+
+  /* Responsive layout */
+
+  @media (max-width: 900px) {
+    .content-grid {
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .container {
+      padding: 0 20px;
+    }
+
+    .nav {
+      height: 70px;
+    }
+
+    .nav-links {
+      gap: 13px;
+      font-size: 12px;
+    }
+
+    .hero {
+      padding-top: 45px;
+      padding-bottom: 65px;
+    }
+
+    .hero h1 {
+      letter-spacing: -2px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+    }
+
+    .back {
+      margin-bottom: 55px;
+    }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 55px 0;
+    }
+
+    .metrics {
+      gap: 10px;
+    }
+
+    .metrics strong {
+      font-size: 21px;
+    }
+
+    .metrics span {
+      font-size: 11px;
+    }
+
+    .model-results {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      font-size: 29px;
+    }
+
+    .footer-content {
+      flex-direction: column;
+    }
+  }
+</style>
