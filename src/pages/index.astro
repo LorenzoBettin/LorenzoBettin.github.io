@@ -100,6 +100,13 @@ const projects = [
                 <div class="tags">
                   {project.tags.map((tag) => <span>{tag}</span>)}
                 </div>
+
+                {project.title === "Solar Equity" && (
+                  <a href="/projects/solar-equity/" class="project-link">
+                    View full project →
+                  </a>
+                )}
+
               </article>
             ))}
           </div>
@@ -229,4 +236,17 @@ const projects = [
     h2 { font-size: 34px; }
     .footer-content { flex-direction: column; }
   }
+
+.project-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #3979e6;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
 </style>

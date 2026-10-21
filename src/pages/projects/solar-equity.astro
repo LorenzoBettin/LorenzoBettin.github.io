@@ -1,0 +1,314 @@
+
+---
+const tools = ["Python", "pandas", "GeoPandas", "scikit-learn", "statsmodels", "Spatial Analysis"];
+
+const sources = [
+  { name: "Eurostat — Solar photovoltaic data", url: "https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_pehnf/default/table?lang=en" },
+  { name: "JRC — Solar energy potential", url: "https://data.jrc.ec.europa.eu/collection/id-00138" },
+  { name: "World Bank — GDP", url: "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD" },
+  { name: "Our World in Data — Solar PV prices", url: "https://ourworldindata.org/grapher/solar-pv-prices" },
+  { name: "Eurostat — Population", url: "https://ec.europa.eu/eurostat/web/population-demography" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Solar Equity: analysing drivers of solar energy adoption across Europe." />
+  <title>Solar Equity | Lorenzo Bettin</title>
+</head>
+<body>
+  <header>
+    <nav class="container nav">
+      <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+      <div class="nav-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a href="https://github.com/LorenzoBettin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <a href="/#projects" class="back">← All projects</a>
+      <div class="eyebrow">ENERGY POLICY / SPATIAL DATA SCIENCE</div>
+      <h1>Solar <span>Equity.</span></h1>
+      <p class="subtitle">
+        Understanding the socio-spatial drivers of solar energy adoption
+        across the European Union.
+      </p>
+
+      <div class="tags">
+        {tools.map(tool => <span>{tool}</span>)}
+      </div>
+    </section>
+
+    <section class="overview">
+      <div class="container">
+        <div class="metrics">
+          <div><strong>2014–2023</strong><span>Analysis period</span></div>
+          <div><strong>230</strong><span>Country-year records</span></div>
+          <div><strong>0.90</strong><span>Exploratory test R²</span></div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">01 / OVERVIEW</div>
+          <div>
+            <h2>The challenge</h2>
+            <p>
+              Solar photovoltaic energy is central to Europe's energy
+              transition. However, solar adoption varies substantially
+              between countries, raising questions about the roles
+              of economic, geographical and demographic factors.
+            </p>
+            <p>
+              This project explores how these factors relate to
+              differences in solar energy adoption, with the wider
+              objective of informing more equitable energy policies.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">02 / RESEARCH</div>
+          <div>
+            <h2>Research question</h2>
+            <blockquote>
+              What are the socio-spatial factors influencing rooftop
+              solar adoption across the EU, and how can these insights
+              inform equitable policies?
+            </blockquote>
+            <p>
+              The analysis considers solar energy potential, economic
+              conditions, population characteristics, energy demand,
+              PV module prices and educational attainment.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">03 / METHODOLOGY</div>
+          <div>
+            <h2>Analytical approach</h2>
+
+            <div class="method">
+              <span>01</span>
+              <div>
+                <h3>Data collection and integration</h3>
+                <p>
+                  Combined geographical boundaries with energy,
+                  demographic and economic data from Eurostat,
+                  the World Bank, JRC and other public sources.
+                </p>
+              </div>
+            </div>
+
+            <div class="method">
+              <span>02</span>
+              <div>
+                <h3>Data preparation</h3>
+                <p>
+                  Examined missing values, harmonized country-year
+                  observations and standardized numerical variables.
+                </p>
+              </div>
+            </div>
+
+            <div class="method">
+              <span>03</span>
+              <div>
+                <h3>Exploratory data analysis</h3>
+                <p>
+                  Investigated photovoltaic trends over time,
+                  country-level variation and potential outliers.
+                </p>
+              </div>
+            </div>
+
+            <div class="method">
+              <span>04</span>
+              <div>
+                <h3>Statistical modelling</h3>
+                <p>
+                  Applied multiple linear regression and ordinary
+                  least squares (OLS) to study relationships
+                  between photovoltaic activity and the selected
+                  explanatory variables.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">04 / FINDINGS</div>
+          <div>
+            <h2>Results and interpretation</h2>
+            <p>
+              The exported notebook reports a test R² of approximately
+              0.90 for its linear regression model.
+            </p>
+            <p>
+              The fitted OLS model identified statistical associations
+              involving GDP, population, energy consumption,
+              technical solar potential and PV module prices.
+              Tertiary education was not statistically significant
+              in the reported specification.
+            </p>
+            <div class="note">
+              <strong>Interpretation and limitations</strong>
+              <p>
+                These are exploratory associations, not causal effects.
+                The model's validation and preprocessing choices would
+                need further review before drawing strong predictive
+                or policy conclusions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">05 / DATA SOURCES</div>
+          <div>
+            <h2>Research resources</h2>
+            <p>Original public data sources referenced by the project.</p>
+            <div class="sources">
+              {sources.map(source => (
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.name} <span>↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="end container">
+      <div class="eyebrow">EXPLORE MORE</div>
+      <h2>Interested in other projects?</h2>
+      <a href="/#projects" class="button">Explore all projects →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© {new Date().getFullYear()} Lorenzo Bettin</span>
+      <a href="/">Back to homepage ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #18253b;
+    -webkit-font-smoothing: antialiased;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  .container { max-width: 1100px; margin: auto; padding: 0 28px; }
+  header { border-bottom: 1px solid #edf0f4; }
+  .nav {
+    height: 80px; display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .logo { font-weight: 800; font-size: 19px; letter-spacing: -.6px; }
+  .logo span, .hero h1 span { color: #3979e6; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; }
+  .nav-links a:hover, .back:hover { color: #3979e6; }
+  .hero { padding-top: 75px; padding-bottom: 95px; }
+  .back { display: inline-block; color: #78869a; font-size: 14px; margin-bottom: 90px; }
+  .eyebrow {
+    font-size: 12px; font-weight: 750; letter-spacing: 1.8px;
+    color: #3979e6; margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(60px, 9vw, 110px);
+    letter-spacing: -5px; line-height: 1.05; margin: 0;
+  }
+  .subtitle {
+    font-size: 23px; line-height: 1.6; color: #64748b;
+    max-width: 730px; margin: 32px 0;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tags span {
+    background: #f0f4fa; border-radius: 6px; padding: 8px 13px;
+    font-size: 12px; color: #526780;
+  }
+  .overview { background: #f7f9fc; padding-bottom: 60px; }
+  .metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; padding: 45px 0; border-bottom: 1px solid #dee5ee;
+  }
+  .metrics div { display: flex; flex-direction: column; gap: 9px; }
+  .metrics strong { font-size: 29px; letter-spacing: -1px; }
+  .metrics span { color: #77859a; font-size: 13px; }
+  .content-grid {
+    display: grid; grid-template-columns: 240px 1fr;
+    gap: 50px; padding: 85px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+  .section-label {
+    color: #3979e6; font-size: 12px; font-weight: 750;
+    letter-spacing: 1.5px;
+  }
+  h2 { font-size: 36px; letter-spacing: -1.3px; margin: 0 0 30px; }
+  p { font-size: 16px; color: #64748b; line-height: 1.9; }
+  blockquote {
+    margin: 25px 0; padding: 15px 0 15px 25px;
+    border-left: 3px solid #3979e6;
+    font-size: 23px; font-weight: 600; line-height: 1.55;
+  }
+  .method {
+    display: flex; gap: 25px; padding: 24px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+  .method > span { color: #3979e6; font-size: 13px; padding-top: 5px; }
+  .method h3 { margin: 0; font-size: 18px; }
+  .method p { margin-bottom: 0; font-size: 14px; }
+  .note {
+    background: white; padding: 25px; border-radius: 10px;
+    margin-top: 30px; border: 1px solid #e3e9f0;
+  }
+  .note p { font-size: 14px; margin-bottom: 0; }
+  .sources a {
+    display: flex; justify-content: space-between; gap: 20px;
+    padding: 18px 0; border-bottom: 1px solid #e3e9f0;
+    font-size: 14px; font-weight: 500;
+  }
+  .sources a:hover { color: #3979e6; }
+  .end { padding-top: 110px; padding-bottom: 120px; }
+  .end h2 { margin-bottom: 32px; }
+  .button {
+    display: inline-block; padding: 16px 25px;
+    background: #18253b; color: white; border-radius: 8px;
+    font-size: 14px; font-weight: 600;
+  }
+  .button:hover { background: #3979e6; }
+  footer { border-top: 1px solid #e3e9f0; }
+  .footer-content {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding-top: 32px; padding-bottom: 32px;
+    color: #8190a5; font-size: 12px;
+  }
+  @media (max-width: 700px) {
+    .nav-links { gap: 13px; font-size: 12px; }
+    .hero { padding-top: 45px; padding-bottom: 65px; }
+    .back { margin-bottom: 60px; }
+    .hero h1 { letter-spacing: -2.5px; }
+    .subtitle { font-size: 18px; }
+    .content-grid { grid-template-columns: 1fr; gap: 20px; padding: 55px 0; }
+    .metrics { gap: 10px; }
+    .metrics strong { font-size: 22px; }
+    .metrics span { font-size: 11px; }
+    h2 { font-size: 29px; }
+    .footer-content { flex-direction: column; }
+  }
+</style>
