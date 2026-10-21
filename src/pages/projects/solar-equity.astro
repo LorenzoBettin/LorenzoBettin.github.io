@@ -147,6 +147,36 @@ const sources = [
           <div class="section-label">04 / FINDINGS</div>
           <div>
             <h2>Results and interpretation</h2>
+
+              <figure class="project-figure">
+                <img
+                  src="/images/solar-equity/solar-trends-europe.png"
+                  alt="Solar photovoltaic values over time across European countries"
+                  loading="lazy"
+                />
+                <figcaption>
+                  Solar photovoltaic trends across European countries,
+                  reproduced from the original project analysis.
+                </figcaption>
+              </figure>
+
+              <figure class="project-figure">
+                <img
+                  src="/images/solar-equity/actual-vs-predicted.png"
+                  alt="Actual versus predicted solar photovoltaic values"
+                  loading="lazy"
+                />
+                <figcaption>
+                  Exploratory regression results: actual versus predicted
+                  photovoltaic values. The dashed line represents
+                  perfect predictions.
+                </figcaption>
+              </figure>
+
+
+      
+
+
             <p>
               The exported notebook reports a test R² of approximately
               0.90 for its linear regression model.
@@ -311,4 +341,25 @@ const sources = [
     h2 { font-size: 29px; }
     .footer-content { flex-direction: column; }
   }
+
+.project-figure {
+  margin: 35px 0;
+}
+
+.project-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #e3e9f0;
+  background: white;
+}
+
+.project-figure figcaption {
+  margin-top: 12px;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 </style>
