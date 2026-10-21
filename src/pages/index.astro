@@ -1,0 +1,232 @@
+
+---
+const projects = [
+  {
+    title: "Solar Equity",
+    category: "Energy & Data Science",
+    description: "Exploring the socio-economic factors influencing solar energy adoption across Europe.",
+    tags: ["Python", "Spatial Analysis", "Statistics"],
+  },
+  {
+    title: "IJssel Flood-Risk Management",
+    category: "Simulation & Policy Analysis",
+    description: "Exploring flood-risk management strategies under uncertainty using computational modelling.",
+    tags: ["Python", "Simulation", "Policy"],
+  },
+  {
+    title: "Refugee Dynamics in Europe",
+    category: "Data Science & Public Policy",
+    description: "Investigating refugee dynamics through statistical analysis and data-driven research.",
+    tags: ["Data Analysis", "Statistics", "Python"],
+  },
+  {
+    title: "India: Corruption & Environment",
+    category: "Spatial Data Science",
+    description: "Examining relationships between corruption and environmental degradation in India.",
+    tags: ["Spatial Analysis", "Python"],
+  },
+  {
+    title: "WhaTrain",
+    category: "Software Development",
+    description: "An iOS application development project built using Swift.",
+    tags: ["Swift", "iOS", "App Development"],
+  },
+  {
+    title: "Digital Crush Test",
+    category: "Decision Support",
+    description: "A digital decision-support project combining programming with regulatory analysis.",
+    tags: ["Python", "HTML", "Analysis"],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Lorenzo Bettin's portfolio: engineering, data science, policy analysis and software development." />
+    <title>Lorenzo Bettin | Engineering & Data Science</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="container nav">
+        <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="https://github.com/LorenzoBettin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <div class="eyebrow">ENGINEERING · DATA SCIENCE · POLICY</div>
+        <h1>Making sense of <span>complex systems.</span></h1>
+        <p class="hero-description">
+          I'm Lorenzo Bettin. I explore complex challenges through
+          engineering, data analysis, computational modelling,
+          and policy-oriented thinking.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="button primary">Explore my work ↓</a>
+          <a href="https://github.com/LorenzoBettin" class="button secondary" target="_blank" rel="noopener noreferrer">View GitHub ↗</a>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">PORTFOLIO</div>
+              <h2>Selected Projects<span class="period">.</span></h2>
+            </div>
+            <p>Research, engineering, data science and software development.</p>
+          </div>
+
+          <div class="project-grid">
+            {projects.map((project, index) => (
+              <article class="project-card">
+                <div class="card-top">
+                  <span class="project-number">0{index + 1}</span>
+                  <span class="arrow">↗</span>
+                </div>
+                <div class="project-category">{project.category}</div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div class="tags">
+                  {project.tags.map((tag) => <span>{tag}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-section container">
+        <div class="eyebrow">ABOUT ME</div>
+        <h2>Engineering meets strategy.</h2>
+        <p>
+          With a background in Business Engineering and Engineering
+          & Policy Analysis, I'm interested in applying technical
+          and analytical approaches to real-world challenges.
+          My work spans energy, infrastructure, public policy,
+          data science and software development.
+        </p>
+        <a href="https://github.com/LorenzoBettin" target="_blank" rel="noopener noreferrer" class="text-link">Explore my GitHub →</a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <span>© {new Date().getFullYear()} Lorenzo Bettin</span>
+        <span>Built with Astro · Hosted on GitHub Pages</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #18253b;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+  :global(a) { text-decoration: none; color: inherit; }
+  .container { max-width: 1140px; margin: auto; padding: 0 28px; }
+  .header { border-bottom: 1px solid #edf0f4; }
+  .nav { height: 84px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-size: 27px; font-weight: 800; letter-spacing: -1.5px; }
+  .logo span, .period { color: #3979e6; }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover, .text-link:hover { color: #3979e6; }
+
+  .eyebrow {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .hero { padding-top: 140px; padding-bottom: 150px; }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 86px);
+    max-width: 930px;
+    line-height: 1.08;
+    letter-spacing: -3.5px;
+    margin: 0 0 30px;
+    font-weight: 760;
+  }
+  .hero h1 span { color: #3979e6; }
+  .hero-description {
+    font-size: 20px;
+    color: #63718a;
+    line-height: 1.75;
+    max-width: 660px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+  .button { display: inline-block; border-radius: 8px; padding: 15px 24px; font-size: 14px; font-weight: 650; }
+  .primary { background: #18253b; color: white; }
+  .primary:hover { background: #3979e6; }
+  .secondary { border: 1px solid #dce2eb; }
+  .secondary:hover { border-color: #3979e6; }
+
+  .projects-section { background: #f7f9fc; padding: 100px 0 120px; }
+  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 45px; }
+  h2 { font-size: 43px; line-height: 1.15; letter-spacing: -1.8px; margin: 0; }
+  .section-heading p { max-width: 290px; color: #718096; line-height: 1.6; font-size: 14px; }
+
+  .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .project-card {
+    background: white;
+    border: 1px solid #e8edf3;
+    border-radius: 12px;
+    padding: 30px;
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .project-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px #18253b0b; }
+  .card-top { display: flex; justify-content: space-between; color: #a4afbe; margin-bottom: 48px; }
+  .project-number { font-size: 13px; }
+  .arrow { font-size: 20px; }
+  .project-category { font-size: 11px; color: #3979e6; font-weight: 750; text-transform: uppercase; letter-spacing: 1px; }
+  .project-card h3 { font-size: 22px; letter-spacing: -.6px; margin: 13px 0 10px; }
+  .project-card p { color: #718096; font-size: 14px; line-height: 1.7; flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 24px; }
+  .tags span { background: #eef3fa; color: #536681; border-radius: 5px; padding: 6px 9px; font-size: 11px; font-weight: 550; }
+
+  .about-section { padding-top: 120px; padding-bottom: 140px; }
+  .about-section h2 { margin-bottom: 28px; }
+  .about-section p { max-width: 760px; color: #63718a; font-size: 19px; line-height: 1.85; }
+  .text-link { display: inline-block; margin-top: 18px; font-weight: 650; font-size: 14px; }
+
+  footer { border-top: 1px solid #edf0f4; }
+  .footer-content { padding-top: 34px; padding-bottom: 34px; display: flex; justify-content: space-between; gap: 20px; font-size: 12px; color: #8190a5; }
+
+  @media (max-width: 900px) {
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .container { padding: 0 20px; }
+    .nav { height: 70px; }
+    .nav-links { gap: 14px; font-size: 12px; }
+    .hero { padding-top: 90px; padding-bottom: 100px; }
+    .hero h1 { letter-spacing: -2px; }
+    .hero-description { font-size: 17px; }
+    .projects-section { padding: 75px 0; }
+    .section-heading { display: block; }
+    .project-grid { grid-template-columns: 1fr; }
+    .about-section { padding-top: 90px; padding-bottom: 90px; }
+    h2 { font-size: 34px; }
+    .footer-content { flex-direction: column; }
+  }
+</style>
