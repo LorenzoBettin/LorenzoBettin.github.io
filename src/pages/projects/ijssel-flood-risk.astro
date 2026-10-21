@@ -1,0 +1,509 @@
+
+---
+const tools = [
+  "Python", "EMA Workbench", "Simulation",
+  "PRIM", "Sobol Analysis", "ε-NSGA-II",
+  "Robust Decision Making"
+];
+
+const stages = [
+  {
+    number: "01",
+    title: "Exploratory modelling",
+    description: "Simulated 40,000 uncertain futures for each of two contrasting strategies: Zero Policy, with no interventions, and One Policy, with all modelled interventions activated.",
+    output: "Flood damage and casualty distributions"
+  },
+  {
+    number: "02",
+    title: "Scenario discovery",
+    description: "Used the Patient Rule Induction Method (PRIM) to identify combinations of uncertain conditions associated with high flood casualties.",
+    output: "Critical scenarios for further analysis"
+  },
+  {
+    number: "03",
+    title: "Global sensitivity analysis",
+    description: "Applied Sobol sensitivity analysis to investigate which uncertain parameters most strongly influence expected annual damage and expected fatalities.",
+    output: "Sensitivity rankings of uncertain inputs"
+  },
+  {
+    number: "04",
+    title: "Multi-objective policy optimization",
+    description: "Used ε-NSGA-II to explore policies balancing flood damage, human safety and investment costs across multiple objectives.",
+    output: "Candidate Pareto-optimal strategies"
+  },
+  {
+    number: "05",
+    title: "Policy robustness evaluation",
+    description: "Evaluated candidate policies under 1,000 uncertain scenarios per policy, using regret and signal-to-noise analysis to assess performance and consistency.",
+    output: "Shortlist of robust policy alternatives"
+  }
+];
+
+const objectives = [
+  "Expected Annual Damage",
+  "Expected Number of Deaths",
+  "Dike Investment Costs",
+  "Room-for-the-River Investment Costs",
+  "Evacuation Costs"
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Integrated Flood-Risk Management for the IJssel River: simulation, multi-objective optimization and robust policy design."
+  />
+  <title>IJssel Flood-Risk Management | Lorenzo Bettin</title>
+</head>
+
+<body>
+  <header>
+    <nav class="container nav">
+      <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+      <div class="nav-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a href="https://github.com/LorenzoBettin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <a href="/#projects" class="back">← All projects</a>
+
+      <div class="eyebrow">
+        SIMULATION / ROBUST DECISION MAKING
+      </div>
+
+      <h1>Integrated <span>Flood-Risk</span> Management.</h1>
+
+      <p class="subtitle">
+        Designing and evaluating flood-risk strategies for
+        the IJssel River under deep uncertainty.
+      </p>
+
+      <div class="tags">
+        {tools.map(tool => <span>{tool}</span>)}
+      </div>
+    </section>
+
+    <section class="overview">
+      <div class="container">
+
+        <div class="metrics">
+          <div>
+            <strong>40,000</strong>
+            <span>Scenarios per extreme policy</span>
+          </div>
+          <div>
+            <strong>5</strong>
+            <span>Optimization objectives</span>
+          </div>
+          <div>
+            <strong>1,000</strong>
+            <span>Scenarios per evaluated policy</span>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">01 / OVERVIEW</div>
+          <div>
+            <h2>The challenge</h2>
+            <p>
+              Flood-risk management in the Netherlands requires
+              decisions about infrastructure investment, public
+              safety and long-term resilience.
+            </p>
+            <p>
+              However, uncertainty surrounding hydrological
+              conditions, dike reliability and economic
+              parameters makes it difficult to determine
+              which interventions will perform best.
+            </p>
+            <p>
+              This project investigates how exploratory
+              modelling and robust decision-making methods
+              can support the design of flood-risk policies
+              for a stylised IJssel River dike system.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">02 / RESEARCH</div>
+          <div>
+            <h2>Research objective</h2>
+            <blockquote>
+              Identify flood-risk management strategies that
+              balance human safety, economic damage and
+              investment costs across uncertain futures.
+            </blockquote>
+            <p>
+              Rather than optimizing for a single assumed
+              future, the analysis explores a wide range
+              of possible scenarios to identify strategies
+              that remain effective under uncertainty.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">03 / MODEL</div>
+          <div>
+            <h2>Policy interventions</h2>
+            <p>
+              The computational model evaluates alternative
+              combinations of flood-risk management measures.
+            </p>
+
+            <div class="intervention">
+              <span>01</span>
+              <div>
+                <h3>Dike heightening</h3>
+                <p>
+                  Investments in dike improvements to reduce
+                  flood probabilities and resulting losses.
+                </p>
+              </div>
+            </div>
+
+            <div class="intervention">
+              <span>02</span>
+              <div>
+                <h3>Room for the River</h3>
+                <p>
+                  Measures intended to increase the river
+                  system's capacity to accommodate high flows.
+                </p>
+              </div>
+            </div>
+
+            <div class="intervention">
+              <span>03</span>
+              <div>
+                <h3>Evacuation and warning measures</h3>
+                <p>
+                  Interventions aimed at reducing human
+                  consequences when flooding occurs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">04 / METHODOLOGY</div>
+          <div>
+            <h2>Analytical workflow</h2>
+
+            {stages.map(stage => (
+              <div class="method">
+                <div class="method-number">{stage.number}</div>
+                <div>
+                  <h3>{stage.title}</h3>
+                  <p>{stage.description}</p>
+                  <div class="method-output">
+                    Output: {stage.output}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">05 / OPTIMIZATION</div>
+          <div>
+            <h2>Five policy objectives</h2>
+            <p>
+              The multi-objective optimization considers
+              trade-offs across the following outcomes:
+            </p>
+
+            <div class="objectives">
+              {objectives.map((objective, index) => (
+                <div class="objective">
+                  <span>0{index + 1}</span>
+                  <strong>{objective}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="section-label">06 / FINDINGS</div>
+          <div>
+            <h2>Key insights</h2>
+
+            <h3>Identifying vulnerable scenarios</h3>
+            <p>
+              PRIM scenario discovery identified a region
+              of the uncertainty space with a reported
+              density of 0.87 and coverage of 0.84.
+              Dike failure probabilities at locations
+              A1 and A3 were important factors.
+            </p>
+
+            <h3>Understanding critical uncertainties</h3>
+            <p>
+              Sobol sensitivity analysis highlighted
+              dike-failure probabilities at A1 and A3
+              as influential for expected flood damage
+              and fatalities.
+            </p>
+
+            <h3>Balancing competing objectives</h3>
+            <p>
+              Multi-objective optimization produced
+              alternative policies with different
+              combinations of costs and flood-risk outcomes,
+              illustrating the absence of a single
+              universally preferable intervention.
+            </p>
+
+            <h3>Evaluating robustness</h3>
+            <p>
+              Candidate policies were stress-tested
+              across uncertain scenarios using regret
+              and signal-to-noise measures. The final
+              assessment also considered practical
+              constraints on the number of interventions.
+            </p>
+
+            <div class="note">
+              <strong>Interpretation</strong>
+              <p>
+                These findings come from a stylised simulation
+                model and should be interpreted as exploratory
+                policy analysis, not as an implemented or
+                officially adopted flood-management plan.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="end container">
+      <div class="eyebrow">EXPLORE MORE</div>
+      <h2>Interested in other projects?</h2>
+      <a href="/#projects" class="button">
+        Explore all projects →
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© {new Date().getFullYear()} Lorenzo Bettin</span>
+      <a href="/">Back to homepage ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+    color: #18253b;
+    background: white;
+    -webkit-font-smoothing: antialiased;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 28px;
+  }
+
+  header { border-bottom: 1px solid #edf0f4; }
+  .nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.6px;
+  }
+  .logo span, .hero h1 span { color: #3979e6; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; }
+  .nav-links a:hover { color: #3979e6; }
+
+  .hero { padding-top: 75px; padding-bottom: 95px; }
+  .back {
+    display: inline-block;
+    color: #78869a;
+    font-size: 14px;
+    margin-bottom: 85px;
+  }
+  .eyebrow {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.8px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(52px, 7.5vw, 90px);
+    letter-spacing: -4px;
+    line-height: 1.09;
+    max-width: 950px;
+    margin: 0;
+  }
+  .subtitle {
+    color: #64748b;
+    font-size: 22px;
+    max-width: 770px;
+    line-height: 1.6;
+    margin: 30px 0;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tags span {
+    padding: 8px 12px;
+    background: #f0f4fa;
+    border-radius: 6px;
+    color: #526780;
+    font-size: 12px;
+  }
+
+  .overview { background: #f7f9fc; padding-bottom: 60px; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 45px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+  .metrics div { display: flex; flex-direction: column; gap: 9px; }
+  .metrics strong { font-size: 29px; letter-spacing: -1px; }
+  .metrics span { font-size: 13px; color: #77859a; }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+  .section-label {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+  }
+  h2 {
+    font-size: 36px;
+    letter-spacing: -1.3px;
+    margin: 0 0 30px;
+  }
+  h3 { margin: 25px 0 8px; font-size: 19px; }
+  p {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.85;
+  }
+  blockquote {
+    margin: 25px 0;
+    padding: 15px 0 15px 25px;
+    border-left: 3px solid #3979e6;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+  .intervention, .method {
+    display: flex;
+    gap: 25px;
+    padding: 22px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+  .intervention > span, .method-number {
+    flex-shrink: 0;
+    color: #3979e6;
+    font-size: 13px;
+    padding-top: 5px;
+  }
+  .intervention h3, .method h3 { margin: 0; }
+  .intervention p, .method p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  .method-output {
+    font-size: 12px;
+    color: #3979e6;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  .objective {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 19px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+  .objective span { color: #3979e6; font-size: 13px; }
+  .objective strong { font-size: 15px; }
+
+  .note {
+    background: white;
+    border: 1px solid #e3e9f0;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .note p { font-size: 14px; margin-bottom: 0; }
+
+  .end { padding-top: 110px; padding-bottom: 120px; }
+  .button {
+    display: inline-block;
+    padding: 16px 25px;
+    background: #18253b;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .button:hover { background: #3979e6; }
+  footer { border-top: 1px solid #e3e9f0; }
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    color: #8190a5;
+    font-size: 12px;
+  }
+
+  @media (max-width: 700px) {
+    .nav-links { gap: 13px; font-size: 12px; }
+    .hero { padding-top: 45px; padding-bottom: 65px; }
+    .hero h1 { letter-spacing: -2px; }
+    .subtitle { font-size: 18px; }
+    .back { margin-bottom: 55px; }
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 55px 0;
+    }
+    .metrics { gap: 10px; }
+    .metrics strong { font-size: 22px; }
+    .metrics span { font-size: 11px; }
+    h2 { font-size: 29px; }
+    .footer-content { flex-direction: column; }
+  }
+</style>

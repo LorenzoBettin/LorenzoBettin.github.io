@@ -101,11 +101,21 @@ const projects = [
                   {project.tags.map((tag) => <span>{tag}</span>)}
                 </div>
 
-                {project.title === "Solar Equity" && (
-                  <a href="/projects/solar-equity/" class="project-link">
-                    View full project →
-                  </a>
-                )}
+               
+              {(project.title === "Solar Equity" ||
+                project.title === "IJssel Flood-Risk Management") && (
+                <a
+                  href={
+                    project.title === "Solar Equity"
+                      ? "/projects/solar-equity/"
+                      : "/projects/ijssel-flood-risk/"
+                  }
+                  class="project-link"
+                >
+                  View full project →
+                </a>
+              )}
+
 
               </article>
             ))}
