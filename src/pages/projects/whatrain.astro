@@ -1,0 +1,968 @@
+
+---
+const repositoryUrl =  "https://github.com/LorenzoBettin/whatrain-ios";
+
+const tools = [
+  "Swift",
+  "SwiftUI",
+  "CoreLocation",
+  "Combine",
+  "REST API Integration",
+  "iOS Development"
+];
+
+const features = [
+  {
+    number: "01",
+    title: "Location awareness",
+    description:
+      "Uses Apple's CoreLocation framework to request location permission and obtain the user's geographical position."
+  },
+  {
+    number: "02",
+    title: "Nearest-station identification",
+    description:
+      "Implements a distance-based search to identify the nearest station from available station coordinates."
+  },
+  {
+    number: "03",
+    title: "Train information requests",
+    description:
+      "Uses URLSession and Combine to request arrivals and departures from the Nederlandse Spoorwegen (NS) information API."
+  },
+  {
+    number: "04",
+    title: "SwiftUI screens",
+    description:
+      "Includes a main train information screen, an upcoming-stations list and a station-details view."
+  }
+];
+
+const files = [
+  {
+    name: "WhaTrainApp.swift",
+    purpose: "Application entry point"
+  },
+  {
+    name: "ContentView.swift",
+    purpose: "Main SwiftUI interface"
+  },
+  {
+    name: "LocationManager.swift",
+    purpose: "Location updates and nearest-station logic"
+  },
+  {
+    name: "TrainDataManager.swift",
+    purpose: "API requests and asynchronous data handling"
+  },
+  {
+    name: "Models.swift",
+    purpose: "Train, station and API response models"
+  },
+  {
+    name: "UpcomingStationsView.swift",
+    purpose: "List of upcoming station information"
+  },
+  {
+    name: "StationDetailsView.swift",
+    purpose: "Station-specific schedule interface"
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="WhaTrain: an unreleased SwiftUI iOS prototype for location-aware railway station and schedule information."
+  />
+
+  <title>WhaTrain | Lorenzo Bettin</title>
+</head>
+
+<body>
+  <header>
+    <nav class="container nav">
+      <a href="/" class="logo">
+        Lorenzo Bettin<span>.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a
+          href="https://github.com/LorenzoBettin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero container">
+      <a href="/#projects" class="back">
+        ← All projects
+      </a>
+
+      <div class="eyebrow">
+        SOFTWARE DEVELOPMENT / IOS
+      </div>
+
+      <h1>
+        Wha<span>Train.</span>
+      </h1>
+
+      <p class="subtitle">
+        Exploring a simpler way to access train information
+        using location-aware mobile technology.
+      </p>
+
+      <div class="tags">
+        {tools.map(tool => <span>{tool}</span>)}
+      </div>
+
+      <div class="hero-meta">
+        <span class="status-dot"></span>
+        Independent iOS prototype · Unreleased
+      </div>
+
+      {repositoryUrl && (
+        <a
+          href={repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="source-link"
+        >
+          View Swift Source Code on GitHub ↗
+        </a>
+      )}
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+
+    <section class="overview">
+      <div class="container">
+
+        <div class="metrics">
+          <div>
+            <strong>SwiftUI</strong>
+            <span>User interface</span>
+          </div>
+
+          <div>
+            <strong>CoreLocation</strong>
+            <span>Location services</span>
+          </div>
+
+          <div>
+            <strong>7</strong>
+            <span>Exported Swift source files</span>
+          </div>
+        </div>
+
+
+        <!-- 01 OVERVIEW -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            01 / OVERVIEW
+          </div>
+
+          <div class="section-content">
+            <h2>The idea</h2>
+
+            <p>
+              When travelling by train, passengers may
+              want quick access to information about
+              nearby or upcoming railway stations
+              without navigating a complex interface.
+            </p>
+
+            <p>
+              WhaTrain started as a personal iOS
+              development project exploring how
+              smartphone location services and railway
+              information APIs could help simplify
+              this experience.
+            </p>
+
+            <p>
+              The proposed application would identify
+              the user's location, find a nearby station
+              and provide relevant train information
+              through a minimal SwiftUI interface.
+            </p>
+
+            <div class="note">
+              <strong>Development status</strong>
+              <p>
+                WhaTrain remained an unreleased prototype.
+                The application was demonstrated privately
+                rather than published on the App Store.
+                Problems accessing and integrating API data
+                prevented completion of the intended
+                real-time information features.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 02 DESIGN OBJECTIVE -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            02 / PRODUCT DESIGN
+          </div>
+
+          <div class="section-content">
+            <h2>Design objective</h2>
+
+            <blockquote>
+              Provide passengers with an intuitive,
+              location-aware interface for accessing
+              relevant railway station information.
+            </blockquote>
+
+            <p>
+              The concept prioritizes a minimal
+              interaction flow: obtain the user's location,
+              determine the nearest station and request
+              the relevant railway information.
+            </p>
+
+            <p>
+              SwiftUI was selected to build a native
+              iOS interface using reusable views
+              and observable data objects.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- 03 COMPONENTS -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            03 / FEATURES
+          </div>
+
+          <div class="section-content">
+            <h2>Implemented components</h2>
+
+            {features.map(feature => (
+              <div class="feature">
+                <span>{feature.number}</span>
+                <div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </div>
+              </div>
+            ))}
+
+            <div class="note">
+              <strong>Implementation versus functionality</strong>
+              <p>
+                These components are present in the source
+                code, but not all are connected into
+                a complete working user experience.
+                In particular, the next-station display
+                and station-specific schedule retrieval
+                remained incomplete.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 04 ARCHITECTURE -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            04 / ARCHITECTURE
+          </div>
+
+          <div class="section-content">
+            <h2>Application architecture</h2>
+
+            <p>
+              The prototype separates location management,
+              train information requests, data models
+              and user-interface components.
+            </p>
+
+            <div class="architecture">
+              <div class="architecture-box">
+                <span class="architecture-label">
+                  DEVICE
+                </span>
+                <strong>CoreLocation</strong>
+                <p>Device location updates</p>
+              </div>
+
+              <div class="architecture-arrow">
+                ↓
+              </div>
+
+              <div class="architecture-box">
+                <span class="architecture-label">
+                  PROCESSING
+                </span>
+                <strong>LocationManager</strong>
+                <p>Nearest-station calculation</p>
+              </div>
+
+              <div class="architecture-arrow">
+                ↓
+              </div>
+
+              <div class="architecture-box">
+                <span class="architecture-label">
+                  NETWORK
+                </span>
+                <strong>TrainDataManager</strong>
+                <p>NS API requests and decoding</p>
+              </div>
+
+              <div class="architecture-arrow">
+                ↓
+              </div>
+
+              <div class="architecture-box">
+                <span class="architecture-label">
+                  INTERFACE
+                </span>
+                <strong>SwiftUI Views</strong>
+                <p>Train and station information</p>
+              </div>
+            </div>
+
+            <p class="diagram-caption">
+              Conceptual data flow based on the original
+              source-code structure. The complete end-to-end
+              flow was not fully operational.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- 05 TECHNICAL IMPLEMENTATION -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            05 / DEVELOPMENT
+          </div>
+
+          <div class="section-content">
+            <h2>Technical implementation</h2>
+
+            <h3>SwiftUI interface</h3>
+            <p>
+              The user interface uses SwiftUI components
+              including navigation views, lists and
+              conditional content. Separate views were
+              created for station details and upcoming
+              station information.
+            </p>
+
+            <h3>Location services</h3>
+            <p>
+              The LocationManager uses CLLocationManager
+              to request user authorization and obtain
+              position updates.
+            </p>
+
+            <p>
+              A nearest-station method calculates
+              distances between the user's location
+              and available station coordinates.
+            </p>
+
+            <h3>Asynchronous API communication</h3>
+            <p>
+              The TrainDataManager uses URLSession
+              and Combine to make HTTP requests
+              to the NS Reisinformatie API and
+              decode response data into Swift models.
+            </p>
+
+            <h3>Data models</h3>
+            <p>
+              The application defines structured models
+              for train arrivals, departures, stations
+              and schedule information.
+              Codable/Decodable support is used
+              for parsing network responses.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- 06 SOURCE CODE -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            06 / SOURCE CODE
+          </div>
+
+          <div class="section-content">
+            <h2>Project structure</h2>
+
+            <p>
+              The original Notion export contains
+              seven Swift files covering the application's
+              interface, location services and data layer.
+            </p>
+
+            <div class="file-list">
+              {files.map(file => (
+                <div class="file-row">
+                  <code>{file.name}</code>
+                  <span>{file.purpose}</span>
+                </div>
+              ))}
+            </div>
+
+            <p class="small-text">
+              The exported material contains source files,
+              not a complete Xcode project. Additional
+              configuration, assets and API access
+              would be required to build and test
+              the application independently.
+            </p>
+
+            {repositoryUrl && (
+              <a
+                href={repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+              >
+                Explore the original Swift source code →
+              </a>
+            )}
+          </div>
+        </div>
+
+
+        <!-- 07 CHALLENGES -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            07 / CHALLENGES
+          </div>
+
+          <div class="section-content">
+            <h2>Development challenges</h2>
+
+            <div class="finding">
+              <span>01</span>
+              <div>
+                <h3>Railway API access</h3>
+                <p>
+                  Problems accessing and integrating
+                  the railway information API prevented
+                  reliable completion of the intended
+                  real-time station features.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>02</span>
+              <div>
+                <h3>Asynchronous location handling</h3>
+                <p>
+                  Location authorization and position
+                  updates are asynchronous. The prototype
+                  highlighted the need to coordinate
+                  location updates and subsequent
+                  network requests.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>03</span>
+              <div>
+                <h3>Connecting data and interface state</h3>
+                <p>
+                  Some published properties in the data
+                  manager were not populated by the
+                  existing API callbacks, leaving parts
+                  of the main interface incomplete.
+                </p>
+              </div>
+            </div>
+
+            <div class="finding">
+              <span>04</span>
+              <div>
+                <h3>Application distribution</h3>
+                <p>
+                  The application remained a private
+                  prototype and was not released
+                  through the App Store.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 08 REFLECTION -->
+
+        <div class="content-grid">
+          <div class="section-label">
+            08 / REFLECTION
+          </div>
+
+          <div class="section-content">
+            <h2>What this project demonstrates</h2>
+
+            <p>
+              WhaTrain provided practical experience
+              with native iOS development, application
+              structure, geolocation, asynchronous
+              requests and API-based data handling.
+            </p>
+
+            <p>
+              It also illustrates challenges involved
+              in turning a functioning code prototype
+              into a reliable application that can
+              deliver accurate external data.
+            </p>
+
+            <div class="note">
+              <strong>Current status</strong>
+              <p>
+                Personal development project.
+                Unreleased prototype, with incomplete
+                API-backed features. No App Store
+                distribution or verified production
+                deployment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- EXPLORE -->
+
+    <section class="end container">
+      <div class="eyebrow">EXPLORE MORE</div>
+
+      <h2>Explore my other projects.</h2>
+
+      <a href="/#projects" class="button">
+        View all projects →
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© {new Date().getFullYear()} Lorenzo Bettin</span>
+      <a href="/">Back to homepage ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+
+  :global(body) {
+    margin: 0;
+    background: white;
+    color: #18253b;
+    font-family: Inter, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :global(a) { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 28px;
+  }
+
+  header { border-bottom: 1px solid #edf0f4; }
+
+  .nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.6px;
+  }
+
+  .logo span, .hero h1 span { color: #3979e6; }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+  }
+
+  .nav-links a:hover, .back:hover {
+    color: #3979e6;
+  }
+
+  .hero {
+    padding-top: 75px;
+    padding-bottom: 95px;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 80px;
+    color: #78869a;
+    font-size: 14px;
+  }
+
+  .eyebrow {
+    margin-bottom: 20px;
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.8px;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(60px, 9vw, 105px);
+    letter-spacing: -4px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    max-width: 760px;
+    margin: 30px 0;
+    color: #64748b;
+    font-size: 22px;
+    line-height: 1.65;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+
+  .tags span {
+    padding: 8px 12px;
+    background: #f0f4fa;
+    border-radius: 6px;
+    color: #526780;
+    font-size: 12px;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    color: #64748b;
+    font-size: 13px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e5a54b;
+  }
+
+  .source-link {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 24px;
+    background: #18253b;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .source-link:hover { background: #3979e6; }
+
+  .overview {
+    background: #f7f9fc;
+    padding-bottom: 60px;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 20px;
+    padding: 45px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+
+  .metrics div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .metrics strong {
+    font-size: 25px;
+    letter-spacing: -.8px;
+  }
+
+  .metrics span {
+    color: #77859a;
+    font-size: 13px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 230px minmax(0,1fr);
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid #dee5ee;
+  }
+
+  .section-content { min-width: 0; }
+
+  .section-label {
+    color: #3979e6;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+  }
+
+  h2 {
+    font-size: 36px;
+    letter-spacing: -1.3px;
+    margin: 0 0 30px;
+  }
+
+  h3 { font-size: 19px; margin: 28px 0 10px; }
+
+  p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  blockquote {
+    margin: 25px 0;
+    padding: 15px 0 15px 25px;
+    border-left: 3px solid #3979e6;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+
+  .feature, .finding {
+    display: flex;
+    gap: 25px;
+    padding: 24px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+
+  .feature > span,
+  .finding > span {
+    flex-shrink: 0;
+    padding-top: 5px;
+    color: #3979e6;
+    font-size: 13px;
+  }
+
+  .feature h3, .finding h3 { margin: 0; }
+
+  .feature p, .finding p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  .architecture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 35px 0;
+  }
+
+  .architecture-box {
+    width: 100%;
+    max-width: 440px;
+    padding: 24px;
+    background: white;
+    border: 1px solid #e3e9f0;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .architecture-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #3979e6;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+  }
+
+  .architecture-box strong {
+    font-size: 19px;
+  }
+
+  .architecture-box p {
+    margin: 8px 0 0;
+    font-size: 13px;
+  }
+
+  .architecture-arrow {
+    padding: 11px;
+    color: #3979e6;
+    font-size: 22px;
+  }
+
+  .diagram-caption, .small-text {
+    color: #77859a;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .file-list { margin-top: 30px; }
+
+  .file-row {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e3e9f0;
+  }
+
+  .file-row code {
+    color: #18253b;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .file-row span {
+    max-width: 270px;
+    color: #64748b;
+    text-align: right;
+    font-size: 13px;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: #3979e6;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .note {
+    margin-top: 30px;
+    padding: 25px;
+    background: white;
+    border: 1px solid #e3e9f0;
+    border-radius: 10px;
+  }
+
+  .note p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  .end {
+    padding-top: 110px;
+    padding-bottom: 120px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 16px 25px;
+    border-radius: 8px;
+    background: #18253b;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .button:hover { background: #3979e6; }
+
+  footer { border-top: 1px solid #e3e9f0; }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    color: #8190a5;
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .content-grid {
+      grid-template-columns: 170px minmax(0,1fr);
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .nav { height: 70px; }
+    .nav-links { gap: 13px; font-size: 12px; }
+    .hero { padding-top: 45px; padding-bottom: 65px; }
+    .hero h1 { letter-spacing: -2px; }
+    .subtitle { font-size: 18px; }
+    .back { margin-bottom: 55px; }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 55px 0;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .metrics strong { font-size: 22px; }
+
+    h2 { font-size: 29px; }
+
+    .file-row {
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .file-row span {
+      max-width: unset;
+      text-align: left;
+    }
+
+    .footer-content { flex-direction: column; }
+  }
+</style>
