@@ -1,0 +1,265 @@
+---
+const repositoryUrl = "https://github.com/LorenzoBettin/european-rearmament";
+
+const tools = ["Python", "pandas", "GeoPandas", "SIPRI", "Statistical Analysis", "Geospatial Research"];
+
+
+const spendingFigures = [
+  {
+    title: "Evolution of EU military expenditure",
+    src: "/images/european-rearmament/eu-expenditure.png",
+    alt: "Evolution of EU-27 real military expenditure between 2014 and 2025",
+    caption: "Evolution of aggregate EU-27 military expenditure in constant 2024 USD. Source: SIPRI Military Expenditure Database. Analysis and visualization by Lorenzo Bettin."
+  },
+  {
+    title: "Annual growth in military expenditure",
+    src: "/images/european-rearmament/annual-growth.png",
+    alt: "Annual percentage changes in EU military expenditure",
+    caption: "Annual changes in aggregate EU military expenditure. Source: SIPRI Military Expenditure Database. Analysis and visualization by Lorenzo Bettin."
+  },
+  {
+    title: "Military expenditure growth by country",
+    src: "/images/european-rearmament/country-growth.png",
+    alt: "Comparison of military expenditure growth across EU member states",
+    caption: "Country-level comparison of real military expenditure growth between 2014 and 2025. Source: SIPRI Military Expenditure Database. Analysis and visualization by Lorenzo Bettin."
+  }
+];
+
+const supplierFigures = [
+  {
+    title: "Origins of major-arms imports",
+    src: "/images/european-rearmament/supplier-origins.png",
+    alt: "Comparison of supplier-origin categories for EU major arms imports over two five-year periods",
+    caption: "Supplier-group shares for 2016–2020 and 2021–2025. Source: SIPRI Arms Transfers Database (TIV). Analysis and figure by Lorenzo Bettin."
+  },
+  {
+    title: "Major-arms transfers to EU countries, 2016–2020",
+    src: "/images/european-rearmament/arms-flows-2016-2020.png",
+    alt: "Sankey diagram of major arms transfers from supplier countries to EU recipients during 2016–2020",
+    caption: "Supplier-to-recipient flows of major conventional arms during 2016–2020. Band widths represent SIPRI Trend Indicator Value (TIV), not monetary expenditure. Source: SIPRI Arms Transfers Database. Visualization by Lorenzo Bettin."
+  },
+  {
+    title: "Major-arms transfers to EU countries, 2021–2025",
+    src: "/images/european-rearmament/arms-flows-2021-2025.png",
+    alt: "Sankey diagram of major arms transfers from supplier countries to EU recipients during 2021–2025",
+    caption: "Supplier-to-recipient flows of major conventional arms during 2021–2025. Band widths represent SIPRI Trend Indicator Value (TIV), not monetary expenditure. Source: SIPRI Arms Transfers Database. Visualization by Lorenzo Bettin."
+  },
+  {
+    title: "Share of arms imports originating in the United States",
+    src: "/images/european-rearmament/us-share-map.png",
+    alt: "Choropleth of US-origin shares of EU member state imports of major conventional arms, 2021–2025",
+    caption: "Country-level US-origin share of major-arms import TIV, 2021–2025. Statistics: SIPRI Arms Transfers Database. Geography: Eurostat GISCO. Analysis and figure by Lorenzo Bettin.",
+    map: true
+  }
+];
+
+
+const geographyFigures = [
+  {
+    title: "Defence burden across EU member states",
+    src: "/images/european-rearmament/gdp-burden-map.png",
+    alt: "Choropleth of military expenditure as a percentage of GDP across EU countries in 2025",
+    caption: "Military expenditure as a share of GDP in 2025. Statistics: SIPRI Military Expenditure Database. Geography: Eurostat GISCO. Analysis and figure by Lorenzo Bettin.",
+    map: true
+  },
+  {
+    title: "Distance from Russia and changing defence burden",
+    src: "/images/european-rearmament/russia-distance-spending.png",
+    alt: "Scatter plot examining distance of EU capitals from Russia and changes in defence burden",
+    caption: "An exploratory association between capital-city distance from Russian territory and changes in defence expenditure as a share of GDP. Data: SIPRI and Eurostat GISCO. Analysis and figure by Lorenzo Bettin."
+  }
+];
+
+
+const synthesisFigures = [
+  {
+    title: "Spending growth versus arms-import growth",
+    src: "/images/european-rearmament/spending-vs-imports.png",
+    alt: "Scatter plot comparing changes in national military spending and major-arms imports",
+    caption: "Exploratory comparison across EU members. Military expenditure and major-arms deliveries measure different phenomena; the notebook's rank-correlation test does not establish a strong association. Sources: SIPRI databases."
+  },
+  {
+    title: "Distance from Russia versus US-origin arms imports",
+    src: "/images/european-rearmament/distance-vs-us-imports.png",
+    alt: "Scatter plot of capital distance from Russia versus share of imported major arms originating in the US",
+    caption: "Exploratory comparison of geography and supplier dependence. The notebook does not find a strong correlation for this relationship. Sources: SIPRI and Eurostat GISCO."
+  }
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="European Rearmament: an original Python analysis of EU military spending, geographical proximity to Russia, and major-arms import origins, 2014–2025." />
+    <title>European Rearmament | Lorenzo Bettin</title>
+  </head>
+  <body>
+    <header>
+      <nav class="container nav">
+        <a href="/" class="logo">Lorenzo Bettin<span>.</span></a>
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="https://github.com/LorenzoBettin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero container">
+        <a href="/#projects" class="back">← All projects</a>
+        <div class="eyebrow">DEFENCE POLICY / GEOSPATIAL DATA SCIENCE</div>
+        <h1>European <span>Rearmament.</span></h1>
+        <p class="subtitle">Is Europe really rearming? Does geography influence defence expenditure? And how dependent are EU states on foreign suppliers of major conventional weapons?</p>
+        <div class="tags">{tools.map(tool => <span>{tool}</span>)}</div>
+        {repositoryUrl && <a href={repositoryUrl} target="_blank" rel="noopener noreferrer" class="source-link">View Python Notebook on GitHub ↗</a>}
+      </section>
+      <section class="overview">
+        <div class="container">
+          <div class="metrics">
+            <div><strong>+104.19%</strong><span>EU-27 real military expenditure, 2014–2025</span></div>
+            <div><strong>−0.770</strong><span>Spearman ρ: capital distance vs change in defence burden</span></div>
+            <div><strong>50.56%</strong><span>US-origin share of EU major-arms import TIV, 2021–2025</span></div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">01 / THE QUESTION</div>
+            <div class="section-content">
+              <h2>Three dimensions of European security</h2>
+              <p>Debates about European rearmament often combine different issues: how much governments spend, where that spending grows, and who supplies the equipment they import. This project examines those questions separately before exploring their connections.</p>
+              <blockquote>Is European defence spending rising, how does geographical exposure relate to that change, and what does major-arms import data reveal about foreign-supplier dependence?</blockquote>
+              <p>The study brings together SIPRI's Military Expenditure and Arms Transfers databases with Eurostat GISCO geographical information. It covers military expenditure from 2014–2025 and compares arms-transfer periods 2016–2020 and 2021–2025.</p>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">02 / SPENDING</div>
+            <div class="section-content">
+              <h2>Is Europe really rearming?</h2>
+              <p>The notebook calculates an increase in EU-27 aggregate real military expenditure from approximately $210.77 billion in 2014 to $430.39 billion in 2025, expressed in constant 2024 US dollars. This represents growth of approximately 104.19%.</p>
+              <p>Growth varies considerably across countries and periods. The analysis distinguishes absolute expenditure increases, percentage growth, and the defence burden measured as a share of GDP.</p>
+              {spendingFigures.map(fig => (
+                <section class="figure-section">
+                  <h3>{fig.title}</h3>
+                  <figure><img src={fig.src} alt={fig.alt} loading="lazy" /><figcaption>{fig.caption}</figcaption></figure>
+                </section>
+              ))}
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">03 / GEOGRAPHY</div>
+            <div class="section-content">
+              <h2>Does geography influence spending?</h2>
+              <p>Using country boundaries and locations, the analysis constructs geographical-distance measures relative to Russia and examines their association with changes in defence expenditure.</p>
+              <p>The notebook reports a Spearman rank correlation of approximately <strong>−0.770</strong> between capital distance and the change in expenditure as a percentage of GDP among 27 EU countries. This is an association, not proof that geographical proximity causes higher expenditure.</p>
+              {geographyFigures.map(fig => (
+                <section class="figure-section">
+                  <h3>{fig.title}</h3>
+                  <figure>
+                    <div class="image-area">
+                      <img src={fig.src} alt={fig.alt} loading="lazy" />
+                      {fig.map && <span class="map-credit">© EuroGeographics for the administrative boundaries · Source: Eurostat GISCO</span>}
+                    </div>
+                    <figcaption>{fig.caption}</figcaption>
+                  </figure>
+                </section>
+              ))}
+              <div class="note"><strong>Interpretation</strong><p>National security strategies, alliance commitments, economic conditions, threat perceptions and procurement cycles may also influence spending. The geographical relationship should not be read as a causal estimate.</p></div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">04 / SUPPLIERS</div>
+            <div class="section-content">
+              <h2>Where do imported weapons come from?</h2>
+              <p>The arms-transfer analysis compares supplier origins of major conventional weapons delivered to EU states. In the notebook, US-origin transfers account for approximately <strong>50.56%</strong> of EU import TIV during 2021–2025.</p>
+              <p>SIPRI's Trend Indicator Value (TIV) measures the volume of major-arms transfers. It is <strong>not</strong> contract value, defence spending, or total military import expenditure.</p>
+              {supplierFigures.map(fig => (
+                <section class="figure-section">
+                  <h3>{fig.title}</h3>
+                  <figure>
+                    <div class="image-area">
+                      <img src={fig.src} alt={fig.alt} loading="lazy" />
+                      {fig.map && <span class="map-credit">© EuroGeographics for the administrative boundaries · Source: Eurostat GISCO</span>}
+                    </div>
+                    <figcaption>{fig.caption}</figcaption>
+                  </figure>
+                </section>
+              ))}
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">05 / COMBINED ANALYSIS</div>
+            <div class="section-content">
+              <h2>Connecting expenditure, geography and procurement</h2>
+              <p>Finally, the notebook evaluates whether countries with faster real spending growth also experienced higher major-arms import growth, and whether distance from Russia was associated with the share of US-origin equipment among recorded imports.</p>
+              <p>The reported Spearman correlations are approximately <strong>0.326</strong> (spending versus import growth, n = 26) and <strong>−0.124</strong> (distance versus US import share, n = 27). Neither comparison provides strong evidence of a monotonic association in the original analysis.</p>
+              {synthesisFigures.map(fig => (
+                <section class="figure-section">
+                  <h3>{fig.title}</h3>
+                  <figure><img src={fig.src} alt={fig.alt} loading="lazy" /><figcaption>{fig.caption}</figcaption></figure>
+                </section>
+              ))}
+              <div class="note"><strong>Main takeaway</strong><p>Military expenditure, geographical exposure and dependence on foreign suppliers are related but distinct dimensions. Increased expenditure does not automatically imply proportionate deliveries of imported equipment or reduced foreign dependence.</p></div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="section-label">06 / DATA & METHODS</div>
+            <div class="section-content">
+              <h2>Methods, sources and limitations</h2>
+              <p>The project uses Python, pandas, GeoPandas and statistical tools to harmonize country data, calculate real expenditure growth, compute geographical distances, aggregate supplier shares and test cross-country associations.</p>
+              <p>Limitations include a small cross-country sample, alternative ways to define proximity, differences between expenditure and arms deliveries, data coverage, and the inability of correlational analyses to identify causal effects.</p>
+              <div class="source-list">
+                <a href="https://www.sipri.org/databases/milex" target="_blank" rel="noopener noreferrer">SIPRI Military Expenditure Database ↗</a>
+                <a href="https://www.sipri.org/databases/armstransfers" target="_blank" rel="noopener noreferrer">SIPRI Arms Transfers Database ↗</a>
+                <a href="https://ec.europa.eu/eurostat/web/gisco" target="_blank" rel="noopener noreferrer">Eurostat GISCO geographic data ↗</a>
+              </div>
+              <div class="note"><strong>Data credits and permissions</strong><p>Military expenditure and major-arms transfer data: Stockholm International Peace Research Institute (SIPRI). All presented calculations, interpretations and Python-generated visualizations: Lorenzo Bettin. SIPRI-derived visualizations are displayed under conditional authorization for this personal, non-commercial portfolio; original SIPRI datasets are not redistributed.</p><p>Geographical boundaries: <strong>© EuroGeographics for the administrative boundaries.</strong> Source: Eurostat GISCO. This credit is also displayed on each map.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="end container"><div class="eyebrow">EXPLORE MORE</div><h2>Other projects and research</h2><a class="button" href="/#projects">View all projects →</a></section>
+    </main>
+    <footer><div class="container foot"><span>© {new Date().getFullYear()} Lorenzo Bettin</span><a href="/">Back to homepage ↑</a></div></footer>
+  </body>
+</html>
+<style>
+  :global(*){box-sizing:border-box}
+  :global(body){margin:0;background:white;color:#18253b;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  :global(a){color:inherit;text-decoration:none}
+  .container{max-width:1100px;margin:auto;padding:0 28px}
+  header{border-bottom:1px solid #edf0f4}
+  .nav{height:80px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:20px;font-weight:800;letter-spacing:-.7px}.logo span,.hero h1 span{color:#3979e6}
+  .nav-links{display:flex;gap:28px;font-size:13px}.nav-links a:hover,.back:hover{color:#3979e6}
+  .hero{padding-top:75px;padding-bottom:95px}.back{display:inline-block;color:#78869a;font-size:14px;margin-bottom:78px}
+  .eyebrow{font-size:12px;font-weight:750;letter-spacing:1.8px;color:#3979e6;margin-bottom:20px}
+  .hero h1{font-size:clamp(52px,8vw,93px);letter-spacing:-4px;line-height:1.09;margin:0}
+  .subtitle{color:#64748b;font-size:22px;line-height:1.65;max-width:800px;margin:28px 0}
+  .tags{display:flex;flex-wrap:wrap;gap:9px}.tags span{font-size:12px;color:#526780;background:#f0f4fa;border-radius:6px;padding:8px 12px}
+  .source-link,.button{display:inline-block;margin-top:28px;padding:15px 24px;color:white;background:#18253b;border-radius:8px;font-weight:650;font-size:14px}.source-link:hover,.button:hover{background:#3979e6}
+  .overview{background:#f7f9fc;padding-bottom:60px}
+  .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:45px 0;border-bottom:1px solid #dee5ee}
+  .metrics>div{display:flex;flex-direction:column;gap:8px}.metrics strong{font-size:29px;letter-spacing:-1px}.metrics span{font-size:13px;line-height:1.5;color:#77859a}
+  .content-grid{display:grid;grid-template-columns:225px minmax(0,1fr);gap:50px;padding:80px 0;border-bottom:1px solid #dee5ee}
+  .section-label{font-size:12px;font-weight:750;letter-spacing:1.4px;color:#3979e6}.section-content{min-width:0}
+  h2{font-size:36px;letter-spacing:-1.3px;margin:0 0 28px}h3{font-size:21px;margin:0 0 16px}
+  p{color:#64748b;line-height:1.85;font-size:16px}strong{color:#18253b}
+  blockquote{margin:26px 0;padding:12px 0 12px 25px;border-left:3px solid #3979e6;font-size:22px;font-weight:600;line-height:1.55}
+  .figure-section{margin-top:45px}.figure-section figure{margin:0}
+  .image-area{position:relative;overflow:hidden;border-radius:10px;background:white;border:1px solid #e3e9f0}
+  figure img{display:block;width:100%;height:auto;background:white;border:1px solid #e3e9f0;border-radius:10px}
+  .image-area img{border:0}
+  .map-credit{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 24px);padding:5px 9px;background:rgba(255,255,255,.94);border-radius:4px;color:#34445b;font-size:10px;line-height:1.4}
+  figcaption{font-size:13px;line-height:1.7;color:#718096;margin-top:12px}
+  .note{margin-top:30px;padding:25px;border:1px solid #e3e9f0;border-radius:10px;background:white}.note p{font-size:14px;margin-bottom:0}
+  .source-list{display:grid;margin-top:24px}.source-list a{padding:18px 0;border-bottom:1px solid #e3e9f0;font-size:14px;font-weight:600}.source-list a:hover{color:#3979e6}
+  .end{padding-top:110px;padding-bottom:120px}.end h2{margin-bottom:0}
+  footer{border-top:1px solid #e3e9f0}.foot{display:flex;justify-content:space-between;gap:15px;padding-top:32px;padding-bottom:32px;color:#8190a5;font-size:12px}
+  @media(max-width:900px){.content-grid{grid-template-columns:165px minmax(0,1fr);gap:30px}}
+  @media(max-width:700px){.container{padding:0 20px}.nav-links{gap:13px;font-size:12px}.hero{padding-top:45px;padding-bottom:65px}.hero h1{letter-spacing:-2px}.back{margin-bottom:50px}.subtitle{font-size:18px}.content-grid{grid-template-columns:1fr;gap:20px;padding:55px 0}.metrics{grid-template-columns:1fr;gap:22px}.metrics strong{font-size:25px}h2{font-size:29px}.foot{flex-direction:column}.map-credit{font-size:9px}}
+</style>

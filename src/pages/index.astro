@@ -1,6 +1,14 @@
 
 ---
 const projects = [
+
+  {
+    title: "European Rearmament",
+    category: "Defence Policy & Geospatial Data Science",
+    description: "Analysing EU military spending, geographical proximity to Russia, and major-arms import origins (2014–2025).",
+    tags: ["Python", "GeoPandas", "SIPRI", "Statistics"],
+  },
+
   {
     title: "Solar Equity",
     category: "Energy & Data Science",
@@ -149,6 +157,16 @@ const projects = [
           {project.title === "Digital Crush Test" && (
             <a
               href="/projects/digital-crush-test/"
+              class="project-link"
+            >
+              View full project →
+            </a>
+          )}
+
+
+          {project.title === "European Rearmament" && (
+            <a
+              href="/projects/european-rearmament/"
               class="project-link"
             >
               View full project →
